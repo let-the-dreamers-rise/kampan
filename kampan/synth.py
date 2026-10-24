@@ -94,6 +94,7 @@ def _layout(spec: SceneSpec, rng: np.random.Generator):
     s = spec.supersample
     big_h, big_w = spec.height * s, spec.width * s
     background = _texture(rng, big_h, big_w, cell=24 * s, lo=60.0, hi=190.0)
+    background = 0.6 * background + 0.4 * _texture(rng, big_h, big_w, cell=6 * s, lo=60.0, hi=190.0)
     side = int(round(spec.marker_mm / spec.mm_per_px * s))
     ref_rect = (0, 0, 0, 0)
     if spec.reference_marker:

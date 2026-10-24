@@ -4,6 +4,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass, field
 
+import cv2
 import numpy as np
 
 from kampan.motion import Track, block_rects, track_patch
@@ -31,13 +32,15 @@ class TimeBase:
     note: str
 
 
-def probe_timebase(capture: Capture, human_fps: float | None = None) -> TimeBase:
+def probe_timebase(capture: Capture, human_fps: float | None = None, requested_fps: float | None = None) -> TimeBase:
     if human_fps:
         return TimeBase(float(human_fps), "human", True, "frame rate confirmed by the person who filmed")
     if capture.capture_fps_tag:
         return TimeBase(capture.capture_fps_tag, "capture-fps tag", True, "slow-motion capture rate from file metadata")
     if capture.container_fps >= TRUSTED_CONTAINER_FPS:
         return TimeBase(capture.container_fps, "container", True, "high-frame-rate stream")
+    if requested_fps and abs(capture.container_fps - requested_fps) < 0.5:
+        return TimeBase(capture.container_fps, "container", True, "file rate matches the rate the agent asked for")
     return TimeBase(capture.container_fps, "container", False,
                     f"file says {capture.container_fps:g} fps with no slow-motion tag; a slow-motion file would be faster")
 
@@ -100,18 +103,36 @@ class CameraMotion:
     shake_hz: float | None
 
 
-def camera_motion(frames: np.ndarray, markers: Markers, fps: float, block: int = 48) -> CameraMotion:
+def _masked_global_track(frames: np.ndarray, exclude: tuple[int, int, int, int] | None) -> Track:
+    """Whole-frame phase correlation with the machine region replaced by the frame mean."""
+    h, w = frames.shape[1:]
+    window = cv2.createHanningWindow((w, h), cv2.CV_64F)
+
+    def prep(img: np.ndarray) -> np.ndarray:
+        out = img.astype(np.float64)
+        if exclude is not None:
+            x, y, ew, eh = exclude
+            out[max(0, y):y + eh, max(0, x):x + ew] = out.mean()
+        return out
+
+    ref = prep(frames[0])
+    n = frames.shape[0]
+    dx, dy, resp = np.empty(n), np.empty(n), np.empty(n)
+    for i in range(n):
+        (sx, sy), r = cv2.phaseCorrelate(ref.copy(), prep(frames[i]), window)
+        dx[i], dy[i], resp[i] = sx, sy, r
+    return Track(dx, dy, resp)
+
+
+def camera_motion(frames: np.ndarray, markers: Markers, fps: float,
+                  exclude: tuple[int, int, int, int] | None = None) -> CameraMotion:
+    """Camera shake from a static reference marker, else from the whole frame minus the machine region."""
     if markers.reference is not None:
         track = track_patch(frames, _bbox(markers.reference, 1.3, frames.shape[1:]))
         source = "reference marker"
     else:
-        rects = block_rects(frames.shape[1:], block)[::3]
-        if not rects:
-            return CameraMotion(None, "none", 0.0, None)
-        tracks = [track_patch(frames, r) for r in rects]
-        track = Track(np.median([t.dx for t in tracks], axis=0), np.median([t.dy for t in tracks], axis=0),
-                      np.median([t.response for t in tracks], axis=0))
-        source = "frame median"
+        track = _masked_global_track(frames, exclude)
+        source = "masked frame"
     mag = np.hypot(track.dx - track.dx.mean(), track.dy - track.dy.mean())
     peaks = find_peaks(track.along(track.principal_angle()), fps, min_snr=MIN_SNR)
     return CameraMotion(track, source, float(np.sqrt(np.mean(mag ** 2))), peaks[0].freq_hz if peaks else None)

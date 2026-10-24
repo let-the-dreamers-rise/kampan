@@ -45,6 +45,10 @@ def test_stabilization_removes_hand_shake():
     cam = camera_motion(cap.frames, markers, 240.0)
     assert cam.source == "reference marker"
     assert cam.jitter_px > 0.5
+    no_ref = camera_motion(cap.frames, find_markers(cap.frames[:, :, :W // 2]), 240.0,
+                           target_rect(markers, cap.frames.shape[1:]))
+    assert no_ref.source == "masked frame"
+    assert no_ref.jitter_px == pytest.approx(cam.jitter_px, rel=0.25)
     rect = target_rect(markers, cap.frames.shape[1:])
     raw = measure_roi(cap.frames, 240.0, rect, None)
     fixed = measure_roi(cap.frames, 240.0, rect, cam)
