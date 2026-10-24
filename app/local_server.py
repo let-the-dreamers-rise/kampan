@@ -10,13 +10,19 @@ from app.storage import MAX_UPLOAD_BYTES, LocalStorage
 
 
 class Handler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
     def _send(self, response: dict) -> None:
         body = response.get("body", "").encode("utf-8")
         self.send_response(response.get("statusCode", 200))
         for key, value in response.get("headers", {}).items():
             self.send_header(key, value)
-        self.end_headers()  # no Content-Length: a local antivirus proxy rewrites it on this machine
+        # Browsers dropped large close-delimited responses here; an explicit length fixes it.
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Connection", "close")
+        self.end_headers()
         self.wfile.write(body)
+        self.wfile.flush()
         self.close_connection = True
 
     def _event(self, method: str, body: str = "") -> dict:

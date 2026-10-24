@@ -20,7 +20,13 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 wsl.exe -d $Distro -- bash -lc "cd '$wslRoot' && docker build -t kampan:latest ."; Check "docker build"
-aws ecr get-login-password --region $Region | wsl.exe -d $Distro -- docker login --username AWS --password-stdin $registry; Check "docker login"
+# Piping into wsl.exe from Windows PowerShell 5.1 re-encodes the text and adds CRLF, which ECR rejects.
+# Hand the password over in an environment variable that WSLENV forwards; it is never printed.
+$env:ECR_PASSWORD = aws ecr get-login-password --region $Region; Check "ecr get-login-password"
+$env:ECR_REGISTRY = $registry
+$env:WSLENV = "ECR_PASSWORD/u:ECR_REGISTRY/u"
+wsl.exe -d $Distro -- bash -c 'printf %s "$ECR_PASSWORD" | docker login --username AWS --password-stdin "$ECR_REGISTRY"'; Check "docker login"
+Remove-Item Env:ECR_PASSWORD
 wsl.exe -d $Distro -- docker tag kampan:latest "$registry/kampan:latest"; Check "docker tag"
 wsl.exe -d $Distro -- docker push "$registry/kampan:latest"; Check "docker push"
 $digest = aws ecr describe-images --repository-name kampan --image-ids imageTag=latest --query "imageDetails[0].imageDigest" --output text --region $Region; Check "describe-images"
