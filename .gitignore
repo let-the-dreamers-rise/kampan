@@ -13,3 +13,5 @@ samconfig.toml
 *.mp4
 !docs/media/*.mp4
 .env
+
+video/narration/
