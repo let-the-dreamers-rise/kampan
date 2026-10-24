@@ -39,8 +39,7 @@
   "description": "The first clip is below the noise floor. The agent asks for closer clips.",
   "label": "simulated",
   "clips": [
-   "samples/far-0.avi",
-   "samples/far-1.avi"
+   "samples/far-0.avi"
   ],
   "config": {
    "marker_mm": 20.0,
@@ -76,8 +75,7 @@
   "label": "simulated",
   "clips": [
    "samples/aliased-0.avi",
-   "samples/aliased-1.avi",
-   "samples/aliased-2.avi"
+   "samples/aliased-1.avi"
   ],
   "config": {
    "marker_mm": 20.0,

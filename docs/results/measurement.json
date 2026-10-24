@@ -4,132 +4,132 @@
   "freq": 8.0,
   "noise": 1.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012877318623914834,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0003212105883871885,
+  "amp_err_rel": -0.030467000856308768,
+  "noise_px": 3.2875463052702444e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 8.0,
   "noise": 1.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012408132590715575,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.00046148152420499855,
+  "amp_err_rel": -0.031151808578929255,
+  "noise_px": 3.139774707808314e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 8.0,
   "noise": 1.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012579821021897872,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.001645299963040081,
+  "amp_err_rel": -0.03010389099754214,
+  "noise_px": 3.3073819349692504e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 21.0,
   "noise": 1.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.001318582297090206,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.001784992484836323,
+  "amp_err_rel": -0.02649634322408681,
+  "noise_px": 3.3144635194981716e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 21.0,
   "noise": 1.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012400193625376297,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.00353125422694589,
+  "amp_err_rel": -0.03405907085576743,
+  "noise_px": 3.0291377268405493e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 21.0,
   "noise": 1.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0013088857515562615,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0017365092936856286,
+  "amp_err_rel": -0.030989022432902948,
+  "noise_px": 3.197360988063213e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 47.0,
   "noise": 1.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012576264596276436,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.00029061809733832433,
+  "amp_err_rel": -0.027756476102986337,
+  "noise_px": 3.340958297541135e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 47.0,
   "noise": 1.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012735801906952175,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.002470715920608768,
+  "amp_err_rel": -0.026392780937816232,
+  "noise_px": 3.140316859463429e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 47.0,
   "noise": 1.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012685452578421546,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0019348340545093379,
+  "amp_err_rel": -0.023709152669881307,
+  "noise_px": 3.404547010506148e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 95.0,
   "noise": 1.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0012520421805152213,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0006679826195323812,
+  "amp_err_rel": -0.028625968239604123,
+  "noise_px": 3.307017150034514e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 95.0,
   "noise": 1.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.001297312587322342,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0023358230906893596,
+  "amp_err_rel": -0.03032186286792745,
+  "noise_px": 3.201989546053286e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 95.0,
   "noise": 1.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.001167582447890771,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0007881516825136714,
+  "amp_err_rel": -0.0285494170607253,
+  "noise_px": 3.261703082770378e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
@@ -137,9 +137,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.007057557035647477,
-  "amp_err_rel": -0.019072645177187555,
-  "noise_px": 0.0012617309568893874,
+  "freq_err_hz": 6.791688802465501e-05,
+  "amp_err_rel": 0.012197251797084994,
+  "noise_px": 3.4759765464054e-05,
   "top_is_true": true
  },
  {
@@ -148,9 +148,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.06673069528747533,
-  "amp_err_rel": -0.06880669091631139,
-  "noise_px": 0.001294935805874339,
+  "freq_err_hz": 0.0005441703794986097,
+  "amp_err_rel": 0.010409292773974621,
+  "noise_px": 3.3648172196122514e-05,
   "top_is_true": true
  },
  {
@@ -159,9 +159,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.04071008153692546,
-  "amp_err_rel": -0.0231640012389199,
-  "noise_px": 0.0011980011122524235,
+  "freq_err_hz": 0.0011218543386899427,
+  "amp_err_rel": 0.011663983297678475,
+  "noise_px": 3.2566960022144e-05,
   "top_is_true": true
  },
  {
@@ -170,9 +170,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.008940385671671436,
-  "amp_err_rel": -0.05795068825988504,
-  "noise_px": 0.0012705523803493743,
+  "freq_err_hz": 0.0007202455440733502,
+  "amp_err_rel": 0.013851951794003822,
+  "noise_px": 3.5365044115208574e-05,
   "top_is_true": true
  },
  {
@@ -181,9 +181,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.05676920467505653,
-  "amp_err_rel": 0.03418780293952019,
-  "noise_px": 0.0013017000472087125,
+  "freq_err_hz": 0.0018755518683022387,
+  "amp_err_rel": 0.009455294742917626,
+  "noise_px": 3.435131837816231e-05,
   "top_is_true": true
  },
  {
@@ -192,9 +192,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.07562591061540047,
-  "amp_err_rel": -0.21172294188817642,
-  "noise_px": 0.0012410307097371082,
+  "freq_err_hz": 0.00014982884646386196,
+  "amp_err_rel": 0.009040608744488587,
+  "noise_px": 3.2919545087889337e-05,
   "top_is_true": true
  },
  {
@@ -203,9 +203,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.018932625002840098,
-  "amp_err_rel": 0.16839223079116067,
-  "noise_px": 0.001224135760293712,
+  "freq_err_hz": 4.019732914173346e-05,
+  "amp_err_rel": 0.013640845048087935,
+  "noise_px": 3.558154292862246e-05,
   "top_is_true": true
  },
  {
@@ -214,9 +214,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.030893290355834324,
-  "amp_err_rel": -0.14438683979263003,
-  "noise_px": 0.0013108535449495706,
+  "freq_err_hz": 0.0012427683290852087,
+  "amp_err_rel": 0.013604027732727793,
+  "noise_px": 3.2657808335663923e-05,
   "top_is_true": true
  },
  {
@@ -225,9 +225,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0045689371069173035,
-  "amp_err_rel": -0.10927379321471249,
-  "noise_px": 0.0012093619977321627,
+  "freq_err_hz": 0.0010203452734316443,
+  "amp_err_rel": 0.014888122560232156,
+  "noise_px": 3.33560764042261e-05,
   "top_is_true": true
  },
  {
@@ -236,9 +236,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.017145925000349393,
-  "amp_err_rel": -0.22873610246200107,
-  "noise_px": 0.0012754019478102138,
+  "freq_err_hz": 0.0009304178134357244,
+  "amp_err_rel": 0.014146961702425631,
+  "noise_px": 3.675518597403574e-05,
   "top_is_true": true
  },
  {
@@ -247,9 +247,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.03149063711904887,
-  "amp_err_rel": 0.123439993976031,
-  "noise_px": 0.0013262333910581058,
+  "freq_err_hz": 0.0012436225564016468,
+  "amp_err_rel": 0.011538317249451015,
+  "noise_px": 3.316070748356687e-05,
   "top_is_true": true
  },
  {
@@ -258,9 +258,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.022056767292696122,
-  "amp_err_rel": 0.08879257569617063,
-  "noise_px": 0.0012026984145901234,
+  "freq_err_hz": 0.00025626669260248036,
+  "amp_err_rel": 0.012595939193744965,
+  "noise_px": 3.468613126892207e-05,
   "top_is_true": true
  },
  {
@@ -269,9 +269,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.004595808201944607,
-  "amp_err_rel": 0.02800601428587131,
-  "noise_px": 0.001323564838522934,
+  "freq_err_hz": 0.0001230147028117301,
+  "amp_err_rel": 0.04310922328334462,
+  "noise_px": 3.50835346568978e-05,
   "top_is_true": true
  },
  {
@@ -280,9 +280,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.03392726968333015,
-  "amp_err_rel": -0.040848205110964944,
-  "noise_px": 0.001311387358233866,
+  "freq_err_hz": 0.0004559197994717934,
+  "amp_err_rel": 0.03865208515808679,
+  "noise_px": 3.208863104304175e-05,
   "top_is_true": true
  },
  {
@@ -291,9 +291,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.012720180239847778,
-  "amp_err_rel": 0.01270066983790289,
-  "noise_px": 0.0012098448841917327,
+  "freq_err_hz": 0.0007015861057979578,
+  "amp_err_rel": 0.03963836625742057,
+  "noise_px": 3.363955482277434e-05,
   "top_is_true": true
  },
  {
@@ -302,9 +302,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.003487160975566894,
-  "amp_err_rel": -0.0018513950910254567,
-  "noise_px": 0.001272387386784043,
+  "freq_err_hz": 0.00046537071062147106,
+  "amp_err_rel": 0.04491654417848965,
+  "noise_px": 3.620696724911259e-05,
   "top_is_true": true
  },
  {
@@ -313,9 +313,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.026964663782564458,
-  "amp_err_rel": 0.03230850371913167,
-  "noise_px": 0.001361290685212853,
+  "freq_err_hz": 0.0011790814675798345,
+  "amp_err_rel": 0.03831423345909343,
+  "noise_px": 3.4924361030084876e-05,
   "top_is_true": true
  },
  {
@@ -324,9 +324,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.038946209130898524,
-  "amp_err_rel": -0.08142325495165188,
-  "noise_px": 0.001188603053477999,
+  "freq_err_hz": 0.00022663675876799516,
+  "amp_err_rel": 0.03911616358548194,
+  "noise_px": 3.3975358349204e-05,
   "top_is_true": true
  },
  {
@@ -335,9 +335,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.00111705095763881,
-  "amp_err_rel": 0.1246910551430825,
-  "noise_px": 0.0012561326210743604,
+  "freq_err_hz": 5.7194492129042374e-05,
+  "amp_err_rel": 0.043664498109974824,
+  "noise_px": 3.520534879527366e-05,
   "top_is_true": true
  },
  {
@@ -346,9 +346,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.022233242751354965,
-  "amp_err_rel": -0.053832393428172,
-  "noise_px": 0.0013412107176926555,
+  "freq_err_hz": 0.0007206672493040855,
+  "amp_err_rel": 0.04067707371233978,
+  "noise_px": 3.231773683179142e-05,
   "top_is_true": true
  },
  {
@@ -357,9 +357,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.007528649196494541,
-  "amp_err_rel": -0.02067677998976586,
-  "noise_px": 0.0011956262455343576,
+  "freq_err_hz": 0.000547403952516845,
+  "amp_err_rel": 0.04125296491318698,
+  "noise_px": 3.445162776862631e-05,
   "top_is_true": true
  },
  {
@@ -368,9 +368,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.002975012366718488,
-  "amp_err_rel": -0.06737040838439255,
-  "noise_px": 0.0012377129756436706,
+  "freq_err_hz": 0.00043048296534209385,
+  "amp_err_rel": 0.043947270990800716,
+  "noise_px": 3.670561197374025e-05,
   "top_is_true": true
  },
  {
@@ -379,9 +379,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.01967562496723474,
-  "amp_err_rel": 0.09279607976582505,
-  "noise_px": 0.0013822277359110092,
+  "freq_err_hz": 0.000934755669575793,
+  "amp_err_rel": 0.03927262797069342,
+  "noise_px": 3.340383367645891e-05,
   "top_is_true": true
  },
  {
@@ -390,9 +390,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.00796482946682886,
-  "amp_err_rel": 0.07502020797612949,
-  "noise_px": 0.0012464765929454196,
+  "freq_err_hz": 2.0889209622509952e-05,
+  "amp_err_rel": 0.03929098879456444,
+  "noise_px": 3.628498406110172e-05,
   "top_is_true": true
  },
  {
@@ -401,9 +401,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.003819538922751775,
-  "amp_err_rel": 0.04405129568035987,
-  "noise_px": 0.0012942604050543486,
+  "freq_err_hz": 0.00025948629957461833,
+  "amp_err_rel": 0.059303620335839496,
+  "noise_px": 3.50352636328431e-05,
   "top_is_true": true
  },
  {
@@ -412,9 +412,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.012039673713864829,
-  "amp_err_rel": -0.02106269723709711,
-  "noise_px": 0.001357300506603839,
+  "freq_err_hz": 0.0003844476536158936,
+  "amp_err_rel": 0.04908856105500639,
+  "noise_px": 3.41650004273004e-05,
   "top_is_true": true
  },
  {
@@ -423,9 +423,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0064749355344115855,
-  "amp_err_rel": 0.023764483583807727,
-  "noise_px": 0.0012064800967836273,
+  "freq_err_hz": 0.0004291115666523737,
+  "amp_err_rel": 0.047857564064287955,
+  "noise_px": 3.270045111313352e-05,
   "top_is_true": true
  },
  {
@@ -434,9 +434,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.002637066266583332,
-  "amp_err_rel": 0.03383011890733187,
-  "noise_px": 0.0013165834255915033,
+  "freq_err_hz": 0.0004321330262193612,
+  "amp_err_rel": 0.05973006062116454,
+  "noise_px": 3.6611750969263804e-05,
   "top_is_true": true
  },
  {
@@ -445,9 +445,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.01342077700988753,
-  "amp_err_rel": 0.003954929802147816,
-  "noise_px": 0.0013743047087521804,
+  "freq_err_hz": 0.0004967455270801224,
+  "amp_err_rel": 0.04877479749622063,
+  "noise_px": 3.572858684344582e-05,
   "top_is_true": true
  },
  {
@@ -456,9 +456,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.017250826518036888,
-  "amp_err_rel": -0.013537761959134254,
-  "noise_px": 0.001265832534893865,
+  "freq_err_hz": 0.00018382635728642072,
+  "amp_err_rel": 0.04757422975442488,
+  "noise_px": 3.6298439418878295e-05,
   "top_is_true": true
  },
  {
@@ -467,9 +467,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 5.886635229046533e-05,
-  "amp_err_rel": 0.07680508785905191,
-  "noise_px": 0.0012404124248766566,
+  "freq_err_hz": 0.00015498927942303453,
+  "amp_err_rel": 0.05965447194381149,
+  "noise_px": 3.717988996860283e-05,
   "top_is_true": true
  },
  {
@@ -478,9 +478,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.006172135210107399,
-  "amp_err_rel": -0.026422836285792256,
-  "noise_px": 0.0013790448574366974,
+  "freq_err_hz": 0.0004323184276202596,
+  "amp_err_rel": 0.04942778416011387,
+  "noise_px": 3.5355197984130795e-05,
   "top_is_true": true
  },
  {
@@ -489,9 +489,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.000320381562190164,
-  "amp_err_rel": 0.008460117089879038,
-  "noise_px": 0.0012560271605249669,
+  "freq_err_hz": 0.0002984637872884832,
+  "amp_err_rel": 0.048387563972650954,
+  "noise_px": 3.6054165866907575e-05,
   "top_is_true": true
  },
  {
@@ -500,9 +500,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.00013302770128120756,
-  "amp_err_rel": 0.004999133833420155,
-  "noise_px": 0.0012915355882577215,
+  "freq_err_hz": 0.0003175780315700649,
+  "amp_err_rel": 0.05945600797955253,
+  "noise_px": 3.6785577883646976e-05,
   "top_is_true": true
  },
  {
@@ -511,9 +511,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.007680051788682363,
-  "amp_err_rel": 0.031565056253691215,
-  "noise_px": 0.0013704799711436284,
+  "freq_err_hz": 0.0005338283376943309,
+  "amp_err_rel": 0.04908893187824573,
+  "noise_px": 3.421922681470877e-05,
   "top_is_true": true
  },
  {
@@ -522,9 +522,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.004417767097905312,
-  "amp_err_rel": 0.049274463840323496,
-  "noise_px": 0.0012352518986964746,
+  "freq_err_hz": 0.0002809104356060743,
+  "amp_err_rel": 0.047590477677015436,
+  "noise_px": 3.889940073139018e-05,
   "top_is_true": true
  },
  {
@@ -533,9 +533,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.000620909930882263,
-  "amp_err_rel": 0.01862769460866831,
-  "noise_px": 0.0013592886432783982,
+  "freq_err_hz": 0.0002922806083214269,
+  "amp_err_rel": 0.058583796139696914,
+  "noise_px": 3.6895238714407364e-05,
   "top_is_true": true
  },
  {
@@ -544,9 +544,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.006398667593279228,
-  "amp_err_rel": -0.0633173489332596,
-  "noise_px": 0.0014027611451280903,
+  "freq_err_hz": 0.0003363408411631852,
+  "amp_err_rel": 0.039934349052729856,
+  "noise_px": 3.4506653588185206e-05,
   "top_is_true": true
  },
  {
@@ -555,9 +555,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0025751686034816146,
-  "amp_err_rel": -0.01675667172216802,
-  "noise_px": 0.0012858810602056482,
+  "freq_err_hz": 0.00038393778986822724,
+  "amp_err_rel": 0.03687530765080438,
+  "noise_px": 3.570405779617745e-05,
   "top_is_true": true
  },
  {
@@ -566,9 +566,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.00011313015161462658,
-  "amp_err_rel": 0.014302590176827196,
-  "noise_px": 0.0013424310194808738,
+  "freq_err_hz": 0.00038951079263682686,
+  "amp_err_rel": 0.058779440914625974,
+  "noise_px": 3.810028863965099e-05,
   "top_is_true": true
  },
  {
@@ -577,9 +577,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.005508085988971345,
-  "amp_err_rel": -0.05556959668666428,
-  "noise_px": 0.0014345185130074582,
+  "freq_err_hz": 0.00039783837726403704,
+  "amp_err_rel": 0.03977404300904333,
+  "noise_px": 3.815739127346921e-05,
   "top_is_true": true
  },
  {
@@ -588,9 +588,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.009613363200024594,
-  "amp_err_rel": -0.03677945416983616,
-  "noise_px": 0.0012933731831501181,
+  "freq_err_hz": 0.0002478408132766674,
+  "amp_err_rel": 0.03686879761912967,
+  "noise_px": 3.5132682994689256e-05,
   "top_is_true": true
  },
  {
@@ -599,9 +599,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 9.296609923126198e-05,
-  "amp_err_rel": 0.0376481665212873,
-  "noise_px": 0.0012711450925439096,
+  "freq_err_hz": 0.0001044450177971612,
+  "amp_err_rel": 0.05856098799765355,
+  "noise_px": 3.7613314495065536e-05,
   "top_is_true": true
  },
  {
@@ -610,9 +610,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.004304535741987081,
-  "amp_err_rel": -0.06655731651141486,
-  "noise_px": 0.0014196029145930266,
+  "freq_err_hz": 0.0002422647340694084,
+  "amp_err_rel": 0.040102327516934044,
+  "noise_px": 3.9511042578782305e-05,
   "top_is_true": true
  },
  {
@@ -621,9 +621,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0007746195446003412,
-  "amp_err_rel": -0.03009974044528213,
-  "noise_px": 0.0012995506971213192,
+  "freq_err_hz": 0.0001673954696386204,
+  "amp_err_rel": 0.03717144591484145,
+  "noise_px": 3.734892764339702e-05,
   "top_is_true": true
  },
  {
@@ -632,9 +632,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0011106263599174326,
-  "amp_err_rel": 0.003839797689409591,
-  "noise_px": 0.0013007994968797373,
+  "freq_err_hz": 0.0003928804684960596,
+  "amp_err_rel": 0.058574321058349615,
+  "noise_px": 3.9349563348527846e-05,
   "top_is_true": true
  },
  {
@@ -643,9 +643,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0036408670885350602,
-  "amp_err_rel": -0.03166557252718638,
-  "noise_px": 0.001400783252583735,
+  "freq_err_hz": 0.0004484915742324347,
+  "amp_err_rel": 0.039754580434141346,
+  "noise_px": 3.495712697152002e-05,
   "top_is_true": true
  },
  {
@@ -654,9 +654,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.001499583566385354,
-  "amp_err_rel": -0.008123431388045999,
-  "noise_px": 0.001299644384583241,
+  "freq_err_hz": 0.0002804665101905357,
+  "amp_err_rel": 0.036885974275420313,
+  "noise_px": 3.8710181785043894e-05,
   "top_is_true": true
  },
  {
@@ -665,9 +665,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0008493224640053754,
-  "amp_err_rel": -0.08245231605393219,
-  "noise_px": 0.0013843570884376046,
+  "freq_err_hz": 0.0003011472395009207,
+  "amp_err_rel": 0.03269562875473383,
+  "noise_px": 3.6747711892212916e-05,
   "top_is_true": true
  },
  {
@@ -676,9 +676,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0021358161501012773,
-  "amp_err_rel": -0.1538239208647287,
-  "noise_px": 0.0014348505342319897,
+  "freq_err_hz": 0.00033146556510121883,
+  "amp_err_rel": 0.0003980714662982221,
+  "noise_px": 3.635474533361257e-05,
   "top_is_true": true
  },
  {
@@ -687,9 +687,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.00048300071543749823,
-  "amp_err_rel": -0.12291152554462578,
-  "noise_px": 0.0013246335944022468,
+  "freq_err_hz": 0.0003440833115089248,
+  "amp_err_rel": -0.003960221728125565,
+  "noise_px": 3.734988277135617e-05,
   "top_is_true": true
  },
  {
@@ -698,9 +698,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0008232913912848971,
-  "amp_err_rel": -0.08303208827482515,
-  "noise_px": 0.0014264491460238085,
+  "freq_err_hz": 0.000318770040074412,
+  "amp_err_rel": 0.03279001951394578,
+  "noise_px": 3.840480921224019e-05,
   "top_is_true": true
  },
  {
@@ -709,9 +709,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0017999702749449398,
-  "amp_err_rel": -0.15056433155137866,
-  "noise_px": 0.0015759493422106195,
+  "freq_err_hz": 0.0003297568095739223,
+  "amp_err_rel": 0.0006595459134180656,
+  "noise_px": 3.844798719085558e-05,
   "top_is_true": true
  },
  {
@@ -720,9 +720,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.002058141311035655,
-  "amp_err_rel": -0.13008049513184627,
-  "noise_px": 0.0012224510540091462,
+  "freq_err_hz": 0.0002626520198809601,
+  "amp_err_rel": -0.0038353686970143963,
+  "noise_px": 3.608651739599992e-05,
   "top_is_true": true
  },
  {
@@ -731,9 +731,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0001129641510857482,
-  "amp_err_rel": -0.07516782526965675,
-  "noise_px": 0.0014452579040413016,
+  "freq_err_hz": 0.0001164725693456603,
+  "amp_err_rel": 0.03285252532634564,
+  "noise_px": 3.863470440832751e-05,
   "top_is_true": true
  },
  {
@@ -742,9 +742,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.001810046585667635,
-  "amp_err_rel": -0.1546808201028684,
-  "noise_px": 0.0014655074711208713,
+  "freq_err_hz": 0.00010075557866429108,
+  "amp_err_rel": 0.000522980907899373,
+  "noise_px": 4.061951309063092e-05,
   "top_is_true": true
  },
  {
@@ -753,9 +753,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.00013454050204586565,
-  "amp_err_rel": -0.12445080495352256,
-  "noise_px": 0.0014344212694873885,
+  "freq_err_hz": 0.00012244633754221468,
+  "amp_err_rel": -0.004027790147013896,
+  "noise_px": 4.3355118032083125e-05,
   "top_is_true": true
  },
  {
@@ -764,9 +764,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0010502143665291896,
-  "amp_err_rel": -0.0869986024629521,
-  "noise_px": 0.0014316289004047196,
+  "freq_err_hz": 0.00033920206645632334,
+  "amp_err_rel": 0.03269925675489246,
+  "noise_px": 3.8101122021936e-05,
   "top_is_true": true
  },
  {
@@ -775,9 +775,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0005888807194480705,
-  "amp_err_rel": -0.14081665067426902,
-  "noise_px": 0.0015317124871351826,
+  "freq_err_hz": 0.00036258967806190867,
+  "amp_err_rel": 6.451384537845921e-05,
+  "noise_px": 3.764739059612227e-05,
   "top_is_true": true
  },
  {
@@ -786,9 +786,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0006531223831558464,
-  "amp_err_rel": -0.12106957168134573,
-  "noise_px": 0.0013735554412242178,
+  "freq_err_hz": 0.0003056058283874563,
+  "amp_err_rel": -0.004586050014797061,
+  "noise_px": 4.233187520848674e-05,
   "top_is_true": true
  },
  {
@@ -797,9 +797,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.00044302219978842317,
-  "amp_err_rel": -0.017649424935972546,
-  "noise_px": 0.0016326091294337744,
+  "freq_err_hz": 0.0003079203089795257,
+  "amp_err_rel": -0.0037564867688587578,
+  "noise_px": 4.5001714267904004e-05,
   "top_is_true": true
  },
  {
@@ -808,9 +808,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.00034201153923874017,
-  "amp_err_rel": -0.01416411979431087,
-  "noise_px": 0.0016426895824973465,
+  "freq_err_hz": 0.0003254044092386721,
+  "amp_err_rel": -0.0013529366059511494,
+  "noise_px": 4.385712422205787e-05,
   "top_is_true": true
  },
  {
@@ -819,9 +819,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0005633289491733251,
-  "amp_err_rel": -0.015606710678399138,
-  "noise_px": 0.0015284010191004417,
+  "freq_err_hz": 0.00033635839265944156,
+  "amp_err_rel": -0.002760108794678695,
+  "noise_px": 4.4308541182848585e-05,
   "top_is_true": true
  },
  {
@@ -830,9 +830,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0009691581593003207,
-  "amp_err_rel": -0.02198626763296252,
-  "noise_px": 0.002073784770684623,
+  "freq_err_hz": 0.0002897706753337559,
+  "amp_err_rel": -0.0037548206849977728,
+  "noise_px": 4.803596809510195e-05,
   "top_is_true": true
  },
  {
@@ -841,9 +841,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 5.356309733173248e-05,
-  "amp_err_rel": -0.014372514685893512,
-  "noise_px": 0.002301628396955843,
+  "freq_err_hz": 0.0002869693678952956,
+  "amp_err_rel": -0.0014292042696695262,
+  "noise_px": 5.3514579020245666e-05,
   "top_is_true": true
  },
  {
@@ -852,9 +852,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.000632810917753801,
-  "amp_err_rel": -0.01806798601388193,
-  "noise_px": 0.0020017058602878226,
+  "freq_err_hz": 0.00027323843568893835,
+  "amp_err_rel": -0.0028325947049431255,
+  "noise_px": 5.5036909032684995e-05,
   "top_is_true": true
  },
  {
@@ -863,9 +863,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.00034913842356587566,
-  "amp_err_rel": -0.017803091452021302,
-  "noise_px": 0.002494033204338592,
+  "freq_err_hz": 0.0001130731343934599,
+  "amp_err_rel": -0.0037301311417021754,
+  "noise_px": 5.1179305294515375e-05,
   "top_is_true": true
  },
  {
@@ -874,9 +874,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 6.189387504917931e-05,
-  "amp_err_rel": -0.014884055073327573,
-  "noise_px": 0.0032791493849679896,
+  "freq_err_hz": 0.00012160574821251657,
+  "amp_err_rel": -0.0013271822134642841,
+  "noise_px": 5.507761455419832e-05,
   "top_is_true": true
  },
  {
@@ -885,9 +885,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 1.236294124851156e-07,
-  "amp_err_rel": -0.014712369083789256,
-  "noise_px": 0.002652848691339062,
+  "freq_err_hz": 0.00012585229308825774,
+  "amp_err_rel": -0.0027179243738475467,
+  "noise_px": 5.701800188150061e-05,
   "top_is_true": true
  },
  {
@@ -896,9 +896,9 @@
   "noise": 1.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.00013550552452556985,
-  "amp_err_rel": -0.01830649189661282,
-  "noise_px": 0.0017086149772723533,
+  "freq_err_hz": 0.0003182639370891138,
+  "amp_err_rel": -0.003783647636603993,
+  "noise_px": 4.878418198029772e-05,
   "top_is_true": true
  },
  {
@@ -907,9 +907,9 @@
   "noise": 1.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 2.0475322727975254e-05,
-  "amp_err_rel": -0.012659813067693926,
-  "noise_px": 0.0017603673259829707,
+  "freq_err_hz": 0.0003238709636548265,
+  "amp_err_rel": -0.0013656249290145972,
+  "noise_px": 4.596670724008834e-05,
   "top_is_true": true
  },
  {
@@ -918,9 +918,9 @@
   "noise": 1.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 5.1590416347835344e-05,
-  "amp_err_rel": -0.014973798595339094,
-  "noise_px": 0.0017824632613549346,
+  "freq_err_hz": 0.000300558036599341,
+  "amp_err_rel": -0.002784922354317043,
+  "noise_px": 5.298750564742569e-05,
   "top_is_true": true
  },
  {
@@ -928,264 +928,264 @@
   "freq": 8.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024767318781830916,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.002796255545188586,
+  "amp_err_rel": -0.07759765695780109,
+  "noise_px": 9.178124825418688e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 8.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0025002233775956516,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.002605070067361659,
+  "amp_err_rel": -0.0814774741354999,
+  "noise_px": 8.646070208290343e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 8.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0027976800119885238,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0017291055652153275,
+  "amp_err_rel": -0.07060489686099881,
+  "noise_px": 9.138451419453517e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 21.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0025100800884867215,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.003519448307915951,
+  "amp_err_rel": -0.059173649796589664,
+  "noise_px": 9.494199839258146e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 21.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0025227036616511135,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.006408913827801399,
+  "amp_err_rel": -0.07987569966258125,
+  "noise_px": 8.650863429912087e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 21.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.002815149386245702,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0062302157779470235,
+  "amp_err_rel": -0.07299318466040261,
+  "noise_px": 9.244119818745332e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 47.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024350595867695377,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0006885722573031217,
+  "amp_err_rel": -0.07437570185897194,
+  "noise_px": 9.228285423108934e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 47.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.002549980497517012,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.006772322584140511,
+  "amp_err_rel": -0.07009452817232069,
+  "noise_px": 8.616300235073484e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 47.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0028043918359886588,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0034366306175428463,
+  "amp_err_rel": -0.054170842888168376,
+  "noise_px": 9.155534983373316e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 95.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024384113896820784,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0031294037703730737,
+  "amp_err_rel": -0.06347047463738843,
+  "noise_px": 9.2846858346223e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 95.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0025118960648297366,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.006364176162307444,
+  "amp_err_rel": -0.08056120952397976,
+  "noise_px": 8.474057661131611e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.005,
   "freq": 95.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0027833554648808725,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.002612870478401419,
+  "amp_err_rel": -0.07723647584828783,
+  "noise_px": 9.13688448877333e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 8.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0025105700071766587,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.001751835014090375,
+  "amp_err_rel": -0.05077378841513661,
+  "noise_px": 9.411480935528781e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 8.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.002504614955970001,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0015999753147779572,
+  "amp_err_rel": -0.05325102894071024,
+  "noise_px": 8.686528344288044e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 8.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0027513577154616143,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.001121280186360707,
+  "amp_err_rel": -0.04758658745771423,
+  "noise_px": 9.22619742654412e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 21.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024834913739419603,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0016120986973859885,
+  "amp_err_rel": -0.04196418211196706,
+  "noise_px": 9.559131604805828e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 21.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0025176541497601867,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0032224652039900548,
+  "amp_err_rel": -0.052951287585484806,
+  "noise_px": 8.789599229125726e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 21.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0027278075198543467,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.002896029775051545,
+  "amp_err_rel": -0.049086190482869156,
+  "noise_px": 9.21609874485038e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 47.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024446751147025603,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0006718119228281694,
+  "amp_err_rel": -0.048479582387700275,
+  "noise_px": 9.462485099549322e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 47.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.002566745999217115,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.004166861213299455,
+  "amp_err_rel": -0.04613870604080663,
+  "noise_px": 8.855453490253514e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 47.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.002761378998217356,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.001860467641201069,
+  "amp_err_rel": -0.04044420621161348,
+  "noise_px": 9.585299189382808e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 95.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024148486473968894,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0016575659135895648,
+  "amp_err_rel": -0.04570672586998621,
+  "noise_px": 9.413350531900642e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 95.0,
   "noise": 3.0,
   "seed": 1,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.002515091422582241,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0029795570749655553,
+  "amp_err_rel": -0.05165655477369722,
+  "noise_px": 8.68979877516037e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.01,
   "freq": 95.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0027658081532240344,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0014153454383745157,
+  "amp_err_rel": -0.05119308992369096,
+  "noise_px": 9.33032577118749e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.02,
@@ -1193,9 +1193,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.032001445013641217,
-  "amp_err_rel": -0.09791595805732997,
-  "noise_px": 0.0024230566075050496,
+  "freq_err_hz": 0.0006127319479087845,
+  "amp_err_rel": -0.010938326400738996,
+  "noise_px": 9.492255291914216e-05,
   "top_is_true": true
  },
  {
@@ -1204,9 +1204,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.04343677160492376,
-  "amp_err_rel": -0.18496607043946983,
-  "noise_px": 0.002523643133586451,
+  "freq_err_hz": 0.0008838473100176714,
+  "amp_err_rel": -0.014842163156916083,
+  "noise_px": 8.944879914805112e-05,
   "top_is_true": true
  },
  {
@@ -1215,9 +1215,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.040973593770235794,
-  "amp_err_rel": -0.08744559981289211,
-  "noise_px": 0.002374729717288866,
+  "freq_err_hz": 0.0010690788139253726,
+  "amp_err_rel": -0.013039350299548676,
+  "noise_px": 9.613232714729029e-05,
   "top_is_true": true
  },
  {
@@ -1226,9 +1226,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.02914534357297427,
-  "amp_err_rel": -0.1293216170476029,
-  "noise_px": 0.0025762067428824038,
+  "freq_err_hz": 0.001133643294902953,
+  "amp_err_rel": -0.006760149003416822,
+  "noise_px": 0.00010105626464203869,
   "top_is_true": true
  },
  {
@@ -1237,9 +1237,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.08356237906546582,
-  "amp_err_rel": 0.031564056929172385,
-  "noise_px": 0.0026016769200312836,
+  "freq_err_hz": 0.0017818839983085866,
+  "amp_err_rel": -0.015517425267793858,
+  "noise_px": 9.362500344859678e-05,
   "top_is_true": true
  },
  {
@@ -1247,11 +1247,11 @@
   "freq": 21.0,
   "noise": 3.0,
   "seed": 2,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0027526408093084664,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0012744333963361498,
+  "amp_err_rel": -0.013377966979497002,
+  "noise_px": 9.498353767776738e-05,
+  "top_is_true": true
  },
  {
   "amp_px": 0.02,
@@ -1259,9 +1259,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.029644576333488715,
-  "amp_err_rel": 0.06281413809162573,
-  "noise_px": 0.002428868537528991,
+  "freq_err_hz": 0.00017213809718441553,
+  "amp_err_rel": -0.009236412830568655,
+  "noise_px": 9.878136275972687e-05,
   "top_is_true": true
  },
  {
@@ -1270,9 +1270,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.06361073250792515,
-  "amp_err_rel": -0.18005783081446164,
-  "noise_px": 0.002643352528616861,
+  "freq_err_hz": 0.0020952788042976067,
+  "amp_err_rel": -0.011248112834200998,
+  "noise_px": 8.851929056837432e-05,
   "top_is_true": true
  },
  {
@@ -1281,9 +1281,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.035014419770497796,
-  "amp_err_rel": -0.11151528979285626,
-  "noise_px": 0.0024866530300471836,
+  "freq_err_hz": 0.0011234327581135517,
+  "amp_err_rel": -0.00929609336527571,
+  "noise_px": 9.916996206749823e-05,
   "top_is_true": true
  },
  {
@@ -1291,11 +1291,11 @@
   "freq": 95.0,
   "noise": 3.0,
   "seed": 0,
-  "detected": false,
-  "freq_err_hz": null,
-  "amp_err_rel": null,
-  "noise_px": 0.0024429244777680378,
-  "top_is_true": false
+  "detected": true,
+  "freq_err_hz": 0.0012528634864139576,
+  "amp_err_rel": -0.007603879193339783,
+  "noise_px": 0.00010020407457363288,
+  "top_is_true": true
  },
  {
   "amp_px": 0.02,
@@ -1303,9 +1303,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0034751254507625617,
-  "amp_err_rel": -0.01548995295733522,
-  "noise_px": 0.0026149869107963282,
+  "freq_err_hz": 0.001821827057923997,
+  "amp_err_rel": -0.014110460529592403,
+  "noise_px": 9.11784960442412e-05,
   "top_is_true": true
  },
  {
@@ -1314,9 +1314,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.008549161210922307,
-  "amp_err_rel": 0.03457054232902778,
-  "noise_px": 0.0023563668613040593,
+  "freq_err_hz": 0.00036807108358516416,
+  "amp_err_rel": -0.014415343295368262,
+  "noise_px": 9.967452848196561e-05,
   "top_is_true": true
  },
  {
@@ -1325,9 +1325,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.016618750679230132,
-  "amp_err_rel": -0.02826113302250438,
-  "noise_px": 0.00253561790810734,
+  "freq_err_hz": 3.3300980583739204e-05,
+  "amp_err_rel": 0.0367715313783748,
+  "noise_px": 9.996840950885948e-05,
   "top_is_true": true
  },
  {
@@ -1336,9 +1336,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.01764977276449997,
-  "amp_err_rel": -0.09163442353680898,
-  "noise_px": 0.0025842710871768404,
+  "freq_err_hz": 0.00046369438940807584,
+  "amp_err_rel": 0.026638320881524624,
+  "noise_px": 9.435940088491565e-05,
   "top_is_true": true
  },
  {
@@ -1347,9 +1347,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.017822283877846345,
-  "amp_err_rel": -0.05225995573604092,
-  "noise_px": 0.0024014495758889268,
+  "freq_err_hz": 0.0006552088551927682,
+  "amp_err_rel": 0.026448142332407415,
+  "noise_px": 9.920954236021482e-05,
   "top_is_true": true
  },
  {
@@ -1358,9 +1358,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.006648507725898867,
-  "amp_err_rel": -0.039607039457967425,
-  "noise_px": 0.002530541857504838,
+  "freq_err_hz": 0.0006576157245667957,
+  "amp_err_rel": 0.03824936292579337,
+  "noise_px": 0.00010277057010145768,
   "top_is_true": true
  },
  {
@@ -1369,9 +1369,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.03443864290423093,
-  "amp_err_rel": -0.008961599005939264,
-  "noise_px": 0.0026437529732630523,
+  "freq_err_hz": 0.0009352043276216193,
+  "amp_err_rel": 0.026617872822966848,
+  "noise_px": 9.826107332972706e-05,
   "top_is_true": true
  },
  {
@@ -1380,9 +1380,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.01166823238293091,
-  "amp_err_rel": -0.16126945367633413,
-  "noise_px": 0.0023004903684354086,
+  "freq_err_hz": 0.00014011147344206165,
+  "amp_err_rel": 0.026070230654386267,
+  "noise_px": 9.683875304661642e-05,
   "top_is_true": true
  },
  {
@@ -1391,9 +1391,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.006969860258450922,
-  "amp_err_rel": 0.03545517116459743,
-  "noise_px": 0.0025308870478126214,
+  "freq_err_hz": 0.0002657064980056134,
+  "amp_err_rel": 0.03705250730988027,
+  "noise_px": 0.00010466962797738713,
   "top_is_true": true
  },
  {
@@ -1402,9 +1402,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.027693931447203113,
-  "amp_err_rel": -0.09570136798106546,
-  "noise_px": 0.0026773619713043604,
+  "freq_err_hz": 0.0008363119746803704,
+  "amp_err_rel": 0.02844602342856828,
+  "noise_px": 9.164029808557938e-05,
   "top_is_true": true
  },
  {
@@ -1413,9 +1413,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.016505376248353798,
-  "amp_err_rel": -0.0497085201793826,
-  "noise_px": 0.0024522538273800518,
+  "freq_err_hz": 0.0004986935613828791,
+  "amp_err_rel": 0.027936115673393158,
+  "noise_px": 0.00010121009937622055,
   "top_is_true": true
  },
  {
@@ -1424,9 +1424,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.003846214204642706,
-  "amp_err_rel": -0.1303741456243751,
-  "noise_px": 0.0025039917718926016,
+  "freq_err_hz": 0.0007612131527139354,
+  "amp_err_rel": 0.037471577028603126,
+  "noise_px": 0.00010279701861211471,
   "top_is_true": true
  },
  {
@@ -1435,9 +1435,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0019411945627894056,
-  "amp_err_rel": -0.014474227877558504,
-  "noise_px": 0.002619210995038301,
+  "freq_err_hz": 0.0009129699872687524,
+  "amp_err_rel": 0.02692936417765676,
+  "noise_px": 9.114659754583001e-05,
   "top_is_true": true
  },
  {
@@ -1446,9 +1446,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.00506956905680056,
-  "amp_err_rel": -0.0034237323059081726,
-  "noise_px": 0.002426413056130116,
+  "freq_err_hz": 4.4989578199761127e-05,
+  "amp_err_rel": 0.0254236656470698,
+  "noise_px": 0.00010342840624674337,
   "top_is_true": true
  },
  {
@@ -1457,9 +1457,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.007734503818236149,
-  "amp_err_rel": -0.026955237610079008,
-  "noise_px": 0.0025993585000871266,
+  "freq_err_hz": 0.0001834091412229455,
+  "amp_err_rel": 0.05022458680003686,
+  "noise_px": 0.00010186633441243159,
   "top_is_true": true
  },
  {
@@ -1468,9 +1468,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.008657784080297048,
-  "amp_err_rel": -0.08832542454544776,
-  "noise_px": 0.00258586344733444,
+  "freq_err_hz": 0.00040186000935538146,
+  "amp_err_rel": 0.031964203874060154,
+  "noise_px": 9.629570656601373e-05,
   "top_is_true": true
  },
  {
@@ -1479,9 +1479,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.010471966188561055,
-  "amp_err_rel": -0.06900198862717172,
-  "noise_px": 0.002409799724601773,
+  "freq_err_hz": 0.0004955892310167798,
+  "amp_err_rel": 0.029595599486740842,
+  "noise_px": 0.00010092262357304798,
   "top_is_true": true
  },
  {
@@ -1490,9 +1490,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0031454013004790227,
-  "amp_err_rel": -0.02970709703484037,
-  "noise_px": 0.002538467349253822,
+  "freq_err_hz": 0.00047982889892139724,
+  "amp_err_rel": 0.051003268597870216,
+  "noise_px": 0.00010353933144523802,
   "top_is_true": true
  },
  {
@@ -1501,9 +1501,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.017931877147713493,
-  "amp_err_rel": -0.05437673242723359,
-  "noise_px": 0.00271885382572991,
+  "freq_err_hz": 0.0005763368196092244,
+  "amp_err_rel": 0.031773578703590544,
+  "noise_px": 0.00010303778433844133,
   "top_is_true": true
  },
  {
@@ -1512,9 +1512,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.006158729211659164,
-  "amp_err_rel": -0.12148378006664046,
-  "noise_px": 0.0023527058896665736,
+  "freq_err_hz": 6.764796735936329e-05,
+  "amp_err_rel": 0.029230561234651065,
+  "noise_px": 9.722287233982054e-05,
   "top_is_true": true
  },
  {
@@ -1523,9 +1523,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0034433659359720536,
-  "amp_err_rel": 0.01017206966910808,
-  "noise_px": 0.002572749227396933,
+  "freq_err_hz": 0.0001755071069595715,
+  "amp_err_rel": 0.05039521353293441,
+  "noise_px": 0.00010261651339837731,
   "top_is_true": true
  },
  {
@@ -1534,9 +1534,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.014118661844136682,
-  "amp_err_rel": -0.08512487347229994,
-  "noise_px": 0.002754621026230419,
+  "freq_err_hz": 0.0004621138360718646,
+  "amp_err_rel": 0.032786960361817774,
+  "noise_px": 9.684681942919778e-05,
   "top_is_true": true
  },
  {
@@ -1545,9 +1545,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.006636388985405972,
-  "amp_err_rel": -0.06674438514240488,
-  "noise_px": 0.0024811049769133727,
+  "freq_err_hz": 0.0003801750913652313,
+  "amp_err_rel": 0.030470655707325184,
+  "noise_px": 0.00010179444374432286,
   "top_is_true": true
  },
  {
@@ -1556,9 +1556,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.004068706116441945,
-  "amp_err_rel": -0.07844461368504377,
-  "noise_px": 0.0025071304837446045,
+  "freq_err_hz": 0.0005268400238236381,
+  "amp_err_rel": 0.05050713427259934,
+  "noise_px": 0.00010361036776437323,
   "top_is_true": true
  },
  {
@@ -1567,9 +1567,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0006113467902650882,
-  "amp_err_rel": -0.04935193753991249,
-  "noise_px": 0.002772283763911924,
+  "freq_err_hz": 0.0006088727560467078,
+  "amp_err_rel": 0.031985716579447515,
+  "noise_px": 9.672958690964929e-05,
   "top_is_true": true
  },
  {
@@ -1578,9 +1578,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0027003908481049166,
-  "amp_err_rel": -0.042304186470016325,
-  "noise_px": 0.0023837558796446575,
+  "freq_err_hz": 0.00016500970829724793,
+  "amp_err_rel": 0.029185909211331268,
+  "noise_px": 0.0001062374730436718,
   "top_is_true": true
  },
  {
@@ -1589,9 +1589,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0033447978464780093,
-  "amp_err_rel": -0.0943072016812091,
-  "noise_px": 0.002777100435806982,
+  "freq_err_hz": 0.0002741406593216311,
+  "amp_err_rel": 0.03398745209245972,
+  "noise_px": 0.00010256537451319862,
   "top_is_true": true
  },
  {
@@ -1600,9 +1600,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.002818351141822717,
-  "amp_err_rel": -0.14955959017982745,
-  "noise_px": 0.002887766947434111,
+  "freq_err_hz": 0.00033737916483911334,
+  "amp_err_rel": 0.0020717978319813777,
+  "noise_px": 0.00010190819281122304,
   "top_is_true": true
  },
  {
@@ -1611,9 +1611,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.00357858665924482,
-  "amp_err_rel": -0.16691487901022456,
-  "noise_px": 0.0025215117036077985,
+  "freq_err_hz": 0.00040086313633036497,
+  "amp_err_rel": -0.0023614931808924045,
+  "noise_px": 0.00010329369462049228,
   "top_is_true": true
  },
  {
@@ -1622,9 +1622,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0008118869933859685,
-  "amp_err_rel": -0.0948903221637896,
-  "noise_px": 0.002866422829963613,
+  "freq_err_hz": 0.0003656859287239911,
+  "amp_err_rel": 0.03424125164925518,
+  "noise_px": 0.00010646485558242745,
   "top_is_true": true
  },
  {
@@ -1633,9 +1633,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.005804381631985933,
-  "amp_err_rel": -0.13617752438711478,
-  "noise_px": 0.0028455103077150087,
+  "freq_err_hz": 0.000376137280586164,
+  "amp_err_rel": 0.002215208269849371,
+  "noise_px": 0.00010369867189496409,
   "top_is_true": true
  },
  {
@@ -1644,9 +1644,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0012477584723100676,
-  "amp_err_rel": -0.1813895769107642,
-  "noise_px": 0.002445304248661782,
+  "freq_err_hz": 0.00019941858463212725,
+  "amp_err_rel": -0.002346516944303952,
+  "noise_px": 9.779942344796975e-05,
   "top_is_true": true
  },
  {
@@ -1655,9 +1655,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0010838519684384096,
-  "amp_err_rel": -0.08201694739542058,
-  "noise_px": 0.002799469797880532,
+  "freq_err_hz": 0.00014144192737575167,
+  "amp_err_rel": 0.03413431911915751,
+  "noise_px": 0.00010431668692259622,
   "top_is_true": true
  },
  {
@@ -1666,9 +1666,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.005023628794603496,
-  "amp_err_rel": -0.14787868540808213,
-  "noise_px": 0.0028682957375039324,
+  "freq_err_hz": 0.00021339787888052797,
+  "amp_err_rel": 0.002287613644461432,
+  "noise_px": 0.00010631042341758542,
   "top_is_true": true
  },
  {
@@ -1677,9 +1677,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0009621659948564343,
-  "amp_err_rel": -0.16753142881901356,
-  "noise_px": 0.002730412031075533,
+  "freq_err_hz": 0.00017548484422746924,
+  "amp_err_rel": -0.0022510645177960717,
+  "noise_px": 0.00010737055840659056,
   "top_is_true": true
  },
  {
@@ -1688,9 +1688,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0017667721983229967,
-  "amp_err_rel": -0.10948741990669827,
-  "noise_px": 0.002676864854656619,
+  "freq_err_hz": 0.00039559792648447,
+  "amp_err_rel": 0.03409889289329708,
+  "noise_px": 0.00010410331428967004,
   "top_is_true": true
  },
  {
@@ -1699,9 +1699,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0006586818418981011,
-  "amp_err_rel": -0.1293250835228795,
-  "noise_px": 0.002959269597954855,
+  "freq_err_hz": 0.00044242160583962686,
+  "amp_err_rel": 0.0016321458731064868,
+  "noise_px": 9.7998073688497e-05,
   "top_is_true": true
  },
  {
@@ -1710,9 +1710,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0019044267161518746,
-  "amp_err_rel": -0.16199796828618737,
-  "noise_px": 0.0026682279816561813,
+  "freq_err_hz": 0.0002754378823510706,
+  "amp_err_rel": -0.003063729421674729,
+  "noise_px": 0.000112764946443488,
   "top_is_true": true
  },
  {
@@ -1721,9 +1721,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0009999665654767398,
-  "amp_err_rel": -0.014974432474537669,
-  "noise_px": 0.0027774675433602223,
+  "freq_err_hz": 0.0003052339987590358,
+  "amp_err_rel": -0.0035315413720921063,
+  "noise_px": 0.00011886531095402287,
   "top_is_true": true
  },
  {
@@ -1732,9 +1732,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.00042023246969691286,
-  "amp_err_rel": -0.013132456030316764,
-  "noise_px": 0.0028931836789571675,
+  "freq_err_hz": 0.0003278451986528097,
+  "amp_err_rel": -0.001029711697280833,
+  "noise_px": 0.00011789732972556639,
   "top_is_true": true
  },
  {
@@ -1743,9 +1743,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.000932941479369731,
-  "amp_err_rel": -0.014209570655589587,
-  "noise_px": 0.0029206410451635954,
+  "freq_err_hz": 0.0003519301037959721,
+  "amp_err_rel": -0.002343576564410421,
+  "noise_px": 0.00012115533171788005,
   "top_is_true": true
  },
  {
@@ -1754,9 +1754,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0004075020520097894,
-  "amp_err_rel": -0.019708370825478938,
-  "noise_px": 0.003518045226415829,
+  "freq_err_hz": 0.00029920319586551614,
+  "amp_err_rel": -0.003388569839751554,
+  "noise_px": 0.000120227753306405,
   "top_is_true": true
  },
  {
@@ -1765,9 +1765,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.00036527938814501226,
-  "amp_err_rel": -0.009973966838085602,
-  "noise_px": 0.003863316066781883,
+  "freq_err_hz": 0.0003028583324216072,
+  "amp_err_rel": -0.001179551790446265,
+  "noise_px": 0.00011798293036424704,
   "top_is_true": true
  },
  {
@@ -1776,9 +1776,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 0.0006375583870124046,
-  "amp_err_rel": -0.014810835856434723,
-  "noise_px": 0.0032743653637916596,
+  "freq_err_hz": 0.00025471834379331426,
+  "amp_err_rel": -0.0025384800210555003,
+  "noise_px": 0.0001278444134683151,
   "top_is_true": true
  },
  {
@@ -1787,9 +1787,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.0006601927675760066,
-  "amp_err_rel": -0.015300114125171183,
-  "noise_px": 0.003560665254905136,
+  "freq_err_hz": 0.00011755360420551142,
+  "amp_err_rel": -0.0033823246195857637,
+  "noise_px": 0.00013050490980611227,
   "top_is_true": true
  },
  {
@@ -1798,9 +1798,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 9.187885297023968e-08,
-  "amp_err_rel": -0.015484594561893772,
-  "noise_px": 0.0043716558127042,
+  "freq_err_hz": 0.00013832291197957147,
+  "amp_err_rel": -0.0009656320815534247,
+  "noise_px": 0.0001289658483946352,
   "top_is_true": true
  },
  {
@@ -1809,9 +1809,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 6.94999813930508e-05,
-  "amp_err_rel": -0.014026366983534433,
-  "noise_px": 0.003975881137188183,
+  "freq_err_hz": 0.0001324889877380997,
+  "amp_err_rel": -0.0023637516871967135,
+  "noise_px": 0.0001250920351565298,
   "top_is_true": true
  },
  {
@@ -1820,9 +1820,9 @@
   "noise": 3.0,
   "seed": 0,
   "detected": true,
-  "freq_err_hz": 0.000817289162583279,
-  "amp_err_rel": -0.01719023443532186,
-  "noise_px": 0.0030165669416230357,
+  "freq_err_hz": 0.0003456447302738752,
+  "amp_err_rel": -0.003467303377155062,
+  "noise_px": 0.0001311228864432508,
   "top_is_true": true
  },
  {
@@ -1831,9 +1831,9 @@
   "noise": 3.0,
   "seed": 1,
   "detected": true,
-  "freq_err_hz": 0.0008821560563774256,
-  "amp_err_rel": -0.011310253803614279,
-  "noise_px": 0.0031840635063851027,
+  "freq_err_hz": 0.00034356486202113956,
+  "amp_err_rel": -0.0009628119252652612,
+  "noise_px": 0.00011885640111232307,
   "top_is_true": true
  },
  {
@@ -1842,9 +1842,9 @@
   "noise": 3.0,
   "seed": 2,
   "detected": true,
-  "freq_err_hz": 8.067665601174667e-05,
-  "amp_err_rel": -0.01207710316991406,
-  "noise_px": 0.0031764739128053647,
+  "freq_err_hz": 0.00029167115002337596,
+  "amp_err_rel": -0.00246866796996581,
+  "noise_px": 0.00012581231224120822,
   "top_is_true": true
  }
 ]

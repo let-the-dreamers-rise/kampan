@@ -42,9 +42,12 @@ def summarize(rows: list[dict]) -> str:
         for amp in AMPS_PX:
             rs = [r for r in rows if r["noise"] == noise and r["amp_px"] == amp]
             det = [r for r in rs if r["detected"]]
-            fe = np.median([r["freq_err_hz"] for r in det]) if det else float("nan")
-            ae = np.median([abs(r["amp_err_rel"]) for r in det]) if det else float("nan")
-            lines.append(f"| {noise:g} | {amp:g} | {len(det)}/{len(rs)} | {fe:.3f} | {100 * ae:.1f}% |")
+            if det:
+                fe = f"{np.median([r['freq_err_hz'] for r in det]):.3f}"
+                ae = f"{100 * np.median([abs(r['amp_err_rel']) for r in det]):.1f}%"
+            else:
+                fe = ae = "-"
+            lines.append(f"| {noise:g} | {amp:g} | {len(det)}/{len(rs)} | {fe} | {ae} |")
     return "\n".join(lines)
 
 
