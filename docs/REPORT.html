@@ -1,0 +1,270 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Kampan report</title><style>
+body { font-family: Georgia, 'Times New Roman', serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem;
+       color: #1a1a1a; line-height: 1.5; font-size: 11pt; }
+h1 { font-size: 20pt; line-height: 1.2; } h2 { font-size: 14pt; margin-top: 1.6em; } h3 { font-size: 12pt; }
+table { border-collapse: collapse; margin: 0.8em 0; font-size: 9.5pt; }
+th, td { border: 1px solid #bbb; padding: 3px 6px; text-align: left; vertical-align: top; }
+th { background: #f0f0f0; }
+img { max-width: 100%; }
+code { font-family: Consolas, monospace; font-size: 9.5pt; }
+@page { size: A4; margin: 16mm; }
+</style></head><body><h1>Kampan: an agent that decides when a phone video can measure vibration</h1>
+<p>Technical report, OpenCV AI Competition 2026 powered by AWS. Author: Ashwin Goyal.</p>
+<h2>1. Problem</h2>
+<p>Vibration monitoring catches failing fans, pumps and motors before they break. Accelerometers and route-based analysis
+cost money and visits, so most small machines are never measured. A phone can film a machine at 120 or 240 fps, and
+OpenCV can track sub-pixel motion in that film. Commercial motion amplification products and research on Eulerian and
+phase-based magnification already show that video carries the signal.</p>
+<p>The hard part is not extracting a number. It is knowing whether the number is true. A phone capture fails in five
+ordinary ways:</p>
+<ol>
+<li><strong>Time base:</strong> slow-motion files are often stored at 30 fps with no capture-rate tag, so every frequency is off by 4 or 8 times.</li>
+<li><strong>Camera shake:</strong> a hand-held phone moves more than the machine.</li>
+<li><strong>Scale:</strong> pixels are not millimetres, and an oblique view compresses one axis.</li>
+<li><strong>Noise floor:</strong> at a distance, the motion is smaller than the sensor noise.</li>
+<li><strong>Aliasing:</strong> vibration above half the frame rate appears at a false, lower frequency.</li>
+</ol>
+<p>A pipeline that ignores these still prints a confident severity. Kampan's contribution is an agent that measures each
+condition with OpenCV 5, refuses to grade when one fails, and tells the person what to change in the next capture.</p>
+<h2>2. System</h2>
+<p><img alt="Architecture" src="architecture.png" /></p>
+<h3>2.1 OpenCV 5 tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>OpenCV 5 functions</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marker scale</td>
+<td><code>aruco.ArucoDetector</code> (DICT_4X4_50, sub-pixel corner refinement), <code>getPerspectiveTransform</code></td>
+<td>mm per pixel along any direction, anisotropy</td>
+</tr>
+<tr>
+<td>Tracking</td>
+<td><code>findTransformECC</code> (translation, warm-started from the previous frame), <code>GaussianBlur</code></td>
+<td>x and y displacement per frame</td>
+</tr>
+<tr>
+<td>Camera motion</td>
+<td>ECC on a static reference marker; otherwise ECC on the whole frame with the target masked out</td>
+<td>camera track to subtract</td>
+</tr>
+<tr>
+<td>Region discovery</td>
+<td><code>DISOpticalFlow</code> (fast preset), block-averaged</td>
+<td>candidate vibrating regions when no marker is present</td>
+</tr>
+<tr>
+<td>Magnified view</td>
+<td><code>pyrDown</code>, <code>pyrUp</code>, temporal IIR band-pass</td>
+<td>the video judges can see</td>
+</tr>
+<tr>
+<td>Video input</td>
+<td><code>VideoCapture</code>, <code>resize</code>; Android capture-rate tag parsed from the MP4</td>
+<td>frames and declared rates</td>
+</tr>
+</tbody>
+</table>
+<p>The spectrum uses a Hann window, zero padding and a median noise floor. A peak counts when it is at least 6 times the
+noise floor.</p>
+<h3>2.2 Agent</h3>
+<p><img alt="Agent workflow" src="agent-workflow.png" /></p>
+<p>The agent is a deterministic policy over tool outputs. It uses no LLM and no paid API. Each capture produces an
+evidence record, and the rules run in a fixed order:</p>
+<ol>
+<li><strong>Time base:</strong> if the frame rate cannot be trusted, ask the human for the capture rate.</li>
+<li><strong>Shake:</strong> if camera jitter is large and no static reference is visible, request a braced recapture with marker 1 in view.</li>
+<li><strong>Scale:</strong> if marker 0 is missing or too oblique, request a recapture facing the machine with marker 0 in view.</li>
+<li><strong>Quality:</strong> if the ECC response is weak, request a recapture with more light or closer framing.</li>
+<li><strong>Signal:</strong> if no peak clears the noise floor, request a closer capture. After the capture budget, report "below detection".</li>
+<li><strong>Aliasing:</strong> if a peak may be an alias, request a recapture at a rate that separates the candidates. If no phone rate can, ask the running speed.</li>
+<li><strong>Grade:</strong> compute velocity RMS from 10 to 1000 Hz and the ISO 10816-1 zone. In zone C or D, ask the running speed for an order diagnosis and propose a maintenance ticket that waits for human approval.</li>
+</ol>
+<p>Limits on captures and questions keep the loop bounded. Every tool call, capture, decision and answer goes into a JSON
+trace. In the simulator the recapture is rendered; with real clips, the person films it.</p>
+<h3>2.3 AWS</h3>
+<p>One CloudFormation stack deploys the system.</p>
+<ul>
+<li><strong>Compute:</strong> a Lambda container image runs Python 3.12 with opencv-python-headless 5.0.0.93, behind a function URL that serves the UI and the API.</li>
+<li><strong>Storage:</strong> clips go straight from the browser to a private S3 bucket through a presigned POST capped at 300 MB. Uploads expire after one day and the bucket refuses non-TLS access.</li>
+<li><strong>Operations:</strong> structured JSON logs, embedded metrics, a CloudWatch dashboard, an error alarm and X-Ray tracing.</li>
+<li><strong>Cost guard:</strong> reserved concurrency of 4.</li>
+</ul>
+<h2>3. Evaluation</h2>
+<h3>3.1 Agent against a no-check baseline</h3>
+<p>The simulator renders a textured machine face with ArUco markers, known vibration tones, sensor noise, camera shake,
+perspective tilt and the container frame rate a phone would write. Ten scenarios each break one capture condition.
+The baseline is the same pipeline in a single pass with no checks. A run is correct when the dominant frequency is
+within 3% and the ISO zone matches the truth, or when a still machine is reported as still.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Correct</th>
+<th>Confidently wrong</th>
+<th>Abstained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent</td>
+<td>30/30</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Baseline</td>
+<td>15/30</td>
+<td>12</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Per-scenario results are in <a href="results/agent_vs_baseline.md">results/agent_vs_baseline.md</a>. The baseline fails exactly
+where a capture condition is broken: untagged slow motion, hand shake with and without a reference, aliasing and a
+missing marker. The agent recovers each case with at most two recaptures and two questions.</p>
+<h3>3.2 Measurement accuracy</h3>
+<table>
+<thead>
+<tr>
+<th>Noise (grey levels)</th>
+<th>Amplitude (px)</th>
+<th>Detected</th>
+<th>Median frequency error (Hz)</th>
+<th>Median amplitude error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.005</td>
+<td>12/12</td>
+<td>0.002</td>
+<td>2.9%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.01</td>
+<td>12/12</td>
+<td>0.001</td>
+<td>1.2%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.05</td>
+<td>12/12</td>
+<td>0.000</td>
+<td>4.9%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>12/12</td>
+<td>0.000</td>
+<td>0.3%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.005</td>
+<td>12/12</td>
+<td>0.003</td>
+<td>7.4%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.01</td>
+<td>12/12</td>
+<td>0.002</td>
+<td>4.9%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.05</td>
+<td>12/12</td>
+<td>0.001</td>
+<td>2.7%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>12/12</td>
+<td>0.000</td>
+<td>0.2%</td>
+</tr>
+</tbody>
+</table>
+<p>Selected rows; the full grid is in <a href="results/measurement.md">results/measurement.md</a>. Amplitudes are peak displacement
+in pixels at 240 fps, over 2 s. Frequencies tested: 8, 21, 47 and 95 Hz, 3 seeds each.</p>
+<p>Every amplitude in the grid was detected. That says more about the simulator than about phones: its sensor noise is
+independent per pixel, so averaging over the tracked patch removes most of it. Real clips add compression artefacts,
+rolling shutter and lighting flicker, which are correlated across the patch. The real detection limit has to come from
+real clips, and the agent's noise-floor check is what protects a reading in the meantime.</p>
+<h3>3.3 Tracker choice</h3>
+<table>
+<thead>
+<tr>
+<th>Texture feature size</th>
+<th>phaseCorrelate + Hann</th>
+<th>phaseCorrelate</th>
+<th>findTransformECC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 px</td>
+<td>40%</td>
+<td>14%</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>2 px</td>
+<td>34%</td>
+<td>22%</td>
+<td>7%</td>
+</tr>
+<tr>
+<td>4 px</td>
+<td>102%</td>
+<td>70%</td>
+<td>7%</td>
+</tr>
+</tbody>
+</table>
+<p>Median absolute error of the sub-pixel shift over 0.05, 0.1 and 0.3 px shifts. Full table:
+<a href="results/estimators.md">results/estimators.md</a>. Phase correlation's sub-pixel estimate depended on texture scale and
+halved horizontal motion on coarse texture. ECC stayed within 7 to 12%, so Kampan tracks with ECC.</p>
+<h3>3.4 OpenCV behaviour found along the way</h3>
+<p><code>cv2.phaseCorrelate</code> with a window argument modifies both input arrays in place. Calling it twice on the same arrays
+gives a different answer the second time. The same happens in OpenCV 4.12.0 and 5.0.0, so it is not new in 5.0.
+Kampan passes copies. The check is in <code>eval/check_phasecorrelate_inplace.py</code>.</p>
+<h2>4. Failure cases and limits</h2>
+<p>These are the ways Kampan failed during development or still can.</p>
+<ul>
+<li><strong>Oblique view, before the tracker change:</strong> with phase correlation the agent graded a 60-degree view of horizontal vibration into the wrong zone, because the tracker under-read horizontal motion. Switching to ECC fixed it in the benchmark.</li>
+<li><strong>Alias forgotten after recapture:</strong> an early policy cleared the alias suspicion when the second clip looked clean, and graded the false frequency. The policy now carries alias suspicion across the capture history.</li>
+<li><strong>Shake subtraction adding noise:</strong> subtracting a camera track that was mostly noise cancelled a small real signal in the far scenario. Kampan now subtracts camera motion only when jitter exceeds 0.05 px.</li>
+<li><strong>Phase correlation lost small motion:</strong> with the earlier tracker, 0.005 px was not detected at either noise level and 0.01 px was lost at the higher noise. ECC detects both in simulation. On real clips, when no peak clears the noise floor, the agent reports "below detection" and asks for a closer capture rather than guessing.</li>
+<li><strong>Simulated noise is too kind:</strong> see section 3.2. Simulation accuracy is an upper bound.</li>
+<li><strong>Phone frame rates cannot separate every alias:</strong> 30, 60, 120 and 240 fps all divide 240, so a tone at f and one at 240 minus f look identical at every phone rate. The agent then asks for the running speed instead of grading.</li>
+<li><strong>Out-of-plane motion is invisible:</strong> a camera sees motion across the image only.</li>
+<li><strong>Exposure blur:</strong> if the shutter stays open for the whole frame, amplitude at high frequency is reduced. At 240 fps that is about 26% at 100 Hz. The report states the possible loss.</li>
+<li><strong>Velocity bias on one sample:</strong> on the unbalanced sample the web app read 3.52 mm/s against a true 3.35 mm/s. This is one case, not a measured bias.</li>
+<li><strong>Simulated recaptures:</strong> in the benchmark the simulator renders each recapture. Real performance depends on how well a person follows the instruction.</li>
+<li><strong>Screening, not certification:</strong> ISO 10816-1 zones are applied to a camera estimate. It is a screening signal for whether to call a technician.</li>
+</ul>
+<h2>5. Reproducing</h2>
+<p>Instructions are in the <a href="../README.md">README</a>. The test suite, all three benchmarks and the deployment run from the repository.</p>
+<h2>6. References</h2>
+<ul>
+<li>ISO 10816-1:1995, Mechanical vibration: evaluation of machine vibration by measurements on non-rotating parts.</li>
+<li>H.-Y. Wu et al., Eulerian Video Magnification for Revealing Subtle Changes in the World, SIGGRAPH 2012.</li>
+<li>N. Wadhwa et al., Phase-Based Video Motion Processing, SIGGRAPH 2013.</li>
+<li>G. Evangelidis and E. Psarakis, Parametric Image Alignment Using Enhanced Correlation Coefficient Maximization, IEEE TPAMI 2008.</li>
+<li>T. Kroeger et al., Fast Optical Flow Using Dense Inverse Search, ECCV 2016.</li>
+<li>S. Garrido-Jurado et al., Automatic generation and detection of highly reliable fiducial markers under occlusion, Pattern Recognition 2014.</li>
+</ul></body></html>
