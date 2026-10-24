@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+clips/
+out/
+capture_kit/*.wav
+capture_kit/*.png
+.aws-sam/
+samconfig.toml
+*.mp4
+!docs/media/*.mp4
+.env
