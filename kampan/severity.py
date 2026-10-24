@@ -42,6 +42,12 @@ def velocity_rms_mm_s(peaks_mm: Sequence[Peak], f_min: float, f_max: float) -> f
     return math.sqrt(total)
 
 
+def exposure_attenuation(freq_hz: float, exposure_s: float) -> float:
+    """Fraction of a sinusoid's amplitude that survives averaging over the exposure: |sinc(pi f t)|."""
+    x = math.pi * freq_hz * exposure_s
+    return 1.0 if x == 0 else abs(math.sin(x) / x)
+
+
 def iso_zone(velocity_mm_s: float, machine_class: str = "I") -> Severity:
     if machine_class not in ZONE_LIMITS:
         raise ValueError(f"machine_class must be one of {sorted(ZONE_LIMITS)}")

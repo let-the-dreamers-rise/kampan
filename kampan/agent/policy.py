@@ -14,7 +14,7 @@ from kampan.agent.evidence import Evidence
 from kampan.dealias import best_next_rate, dealias
 from kampan.diagnose import diagnose
 from kampan.measure import MIN_SNR
-from kampan.severity import iso_zone, velocity_rms_mm_s
+from kampan.severity import exposure_attenuation, iso_zone, velocity_rms_mm_s
 
 Action = Recapture | AskHuman | Report | ProposeTicket
 
@@ -136,6 +136,12 @@ def _caveats(c: Context) -> tuple[str, ...]:
         notes.append("the two markers disagree on scale by more than 15%: they may not be in the same plane")
     if ev.roi_source == "discovered":
         notes.append("measured on an automatically found region, not on a marker")
+    top = ev.top_hz
+    if top and ev.fps:
+        kept = exposure_attenuation(top, 1.0 / ev.fps)
+        if kept < 0.95:
+            notes.append(f"if the shutter stayed open for the whole frame, motion blur hides up to {100 * (1 - kept):.0f}% "
+                         f"of the amplitude at {top:.0f} Hz; a shorter exposure (more light) reduces this")
     notes.append("camera screening estimate in the image plane, not a certified ISO 10816 measurement")
     return tuple(notes)
 

@@ -28,6 +28,13 @@ def test_large_machine_class_has_higher_limits():
     assert iso_zone(3.0, machine_class="III").zone == "B"
 
 
+def test_exposure_attenuation():
+    from kampan.severity import exposure_attenuation
+    assert exposure_attenuation(21.0, 1 / 240) == pytest.approx(0.987, abs=0.002)
+    assert exposure_attenuation(100.0, 1 / 240) == pytest.approx(0.738, abs=0.005)
+    assert exposure_attenuation(0.0, 0.01) == 1.0
+
+
 def test_unknown_class_rejected():
     with pytest.raises(ValueError):
         iso_zone(1.0, machine_class="V")
