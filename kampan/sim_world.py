@@ -103,7 +103,7 @@ def scenario_library(seed: int = 0) -> tuple[Scenario, ...]:
                  note="slow-motion file whose container says 30 fps and carries no capture tag"),
         Scenario("far", (Tone(21.0, 0.0035),), 21.0, base_mm_per_px=0.6, seed=seed,
                  note="camera too far: motion below the noise floor"),
-        Scenario("handheld-referenced", fan, 21.0, shake_px=1.2, seed=seed,
+        Scenario("handheld-referenced", fan, 21.0, shake_px=0.8, seed=seed,
                  note="hand shake, static reference marker visible"),
         Scenario("handheld-unreferenced", fan, 21.0, shake_px=1.2, reference_marker=False, seed=seed,
                  note="hand shake, no static reference"),

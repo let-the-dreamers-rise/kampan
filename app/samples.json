@@ -1,0 +1,106 @@
+[
+ {
+  "id": "clean",
+  "title": "Healthy fan (simulated)",
+  "description": "A good capture of a healthy machine. One clip, graded directly.",
+  "label": "simulated",
+  "clips": [
+   "samples/clean-0.avi"
+  ],
+  "config": {
+   "marker_mm": 20.0,
+   "machine_class": "I"
+  },
+  "answers": {
+   "running_hz": 21.0
+  },
+  "expected_verdict": "graded"
+ },
+ {
+  "id": "slowmo-untagged",
+  "title": "Slow-motion file without metadata (simulated)",
+  "description": "The file says 30 fps. The agent asks what rate it was really filmed at.",
+  "label": "simulated",
+  "clips": [
+   "samples/slowmo-untagged-0.avi"
+  ],
+  "config": {
+   "marker_mm": 20.0,
+   "machine_class": "I"
+  },
+  "answers": {
+   "running_hz": 21.0
+  },
+  "expected_verdict": "graded"
+ },
+ {
+  "id": "far",
+  "title": "Camera too far (simulated)",
+  "description": "The first clip is below the noise floor. The agent asks for closer clips.",
+  "label": "simulated",
+  "clips": [
+   "samples/far-0.avi",
+   "samples/far-1.avi"
+  ],
+  "config": {
+   "marker_mm": 20.0,
+   "machine_class": "I"
+  },
+  "answers": {
+   "running_hz": 21.0
+  },
+  "expected_verdict": "graded"
+ },
+ {
+  "id": "handheld-unreferenced",
+  "title": "Handheld, no reference (simulated)",
+  "description": "Hand shake with nothing still to subtract. The agent asks for a support and a reference marker.",
+  "label": "simulated",
+  "clips": [
+   "samples/handheld-unreferenced-0.avi",
+   "samples/handheld-unreferenced-1.avi"
+  ],
+  "config": {
+   "marker_mm": 20.0,
+   "machine_class": "I"
+  },
+  "answers": {
+   "running_hz": 21.0
+  },
+  "expected_verdict": "graded"
+ },
+ {
+  "id": "aliased",
+  "title": "Faster than the frame rate (simulated)",
+  "description": "A 140 Hz vibration filmed at 240 fps shows up at 100 Hz. The agent picks a frame rate that tells the candidates apart.",
+  "label": "simulated",
+  "clips": [
+   "samples/aliased-0.avi",
+   "samples/aliased-1.avi",
+   "samples/aliased-2.avi"
+  ],
+  "config": {
+   "marker_mm": 20.0,
+   "machine_class": "I"
+  },
+  "answers": {},
+  "expected_verdict": "graded"
+ },
+ {
+  "id": "unbalanced",
+  "title": "Unbalanced fan (simulated)",
+  "description": "Strong 1x vibration. The agent asks the running speed, names the fault and holds a maintenance ticket for your approval.",
+  "label": "simulated",
+  "clips": [
+   "samples/unbalanced-0.avi"
+  ],
+  "config": {
+   "marker_mm": 20.0,
+   "machine_class": "I"
+  },
+  "answers": {
+   "running_hz": 21.0
+  },
+  "expected_verdict": "graded"
+ }
+]

@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 import cv2
 import numpy as np
 
-from kampan.motion import Track, block_rects, track_patch
+from kampan.motion import Track, block_rects, ecc_shift, track_patch
 from kampan.scale import PlaneScale, detect_markers, scale_from_marker
 from kampan.spectrum import Peak, find_peaks, noise_floor
 
@@ -105,24 +105,29 @@ class CameraMotion:
     shake_hz: float | None
 
 
+GLOBAL_SCALE = 0.5  # camera motion is estimated at half resolution; it is large compared with vibration
+
+
 def _masked_global_track(frames: np.ndarray, exclude: tuple[int, int, int, int] | None) -> Track:
-    """Whole-frame phase correlation with the machine region replaced by the frame mean."""
+    """Whole-frame ECC translation at half resolution, with the machine region masked out."""
     h, w = frames.shape[1:]
-    window = cv2.createHanningWindow((w, h), cv2.CV_64F)
+    size = (max(16, int(w * GLOBAL_SCALE)), max(16, int(h * GLOBAL_SCALE)))
+    mask = np.full((size[1], size[0]), 255, np.uint8)
+    if exclude is not None:
+        x, y, ew, eh = (int(v * GLOBAL_SCALE) for v in exclude)
+        mask[max(0, y):y + eh, max(0, x):x + ew] = 0
 
-    def prep(img: np.ndarray) -> np.ndarray:
-        out = img.astype(np.float64)
-        if exclude is not None:
-            x, y, ew, eh = exclude
-            out[max(0, y):y + eh, max(0, x):x + ew] = out.mean()
-        return out
+    def small(img: np.ndarray) -> np.ndarray:
+        return cv2.resize(img, size, interpolation=cv2.INTER_AREA).astype(np.float32)
 
-    ref = prep(frames[0])
+    ref = small(frames[0])
     n = frames.shape[0]
     dx, dy, resp = np.empty(n), np.empty(n), np.empty(n)
+    prev = (0.0, 0.0)
     for i in range(n):
-        (sx, sy), r = cv2.phaseCorrelate(ref.copy(), prep(frames[i]), window)
-        dx[i], dy[i], resp[i] = sx, sy, r
+        sx, sy, cc = ecc_shift(ref, small(frames[i]), prev, mask)
+        dx[i], dy[i], resp[i] = sx / GLOBAL_SCALE, sy / GLOBAL_SCALE, cc
+        prev = (sx, sy)
     return Track(dx, dy, resp)
 
 
@@ -171,25 +176,41 @@ class Region:
     snr: float
 
 
+DISCOVERY_SNR = 8.0
+
+
+def block_flow_series(frames: np.ndarray, block: int) -> np.ndarray:
+    """(T, rows, cols, 2) mean DIS optical flow from frame 0 to every frame, per image block."""
+    dis = cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_FAST)
+    h, w = frames.shape[1:]
+    gh, gw = h // block, w // block
+    out = np.empty((frames.shape[0], gh, gw, 2))
+    for i, frame in enumerate(frames):
+        flow = dis.calc(frames[0], frame, None)[: gh * block, : gw * block]
+        out[i] = flow.reshape(gh, block, gw, block, 2).mean(axis=(1, 3))
+    return out
+
+
 def discover_regions(frames: np.ndarray, fps: float, camera: CameraMotion | None, block: int = 32,
                      seconds: float = 2.0, top: int = 5) -> tuple[Region, ...]:
-    """Rank image blocks by vibration strength; skip blocks whose content changes (rotating parts)."""
+    """Rank image blocks by periodic motion in dense DIS optical flow; the best one is then measured with ECC."""
     n = min(frames.shape[0], max(64, int(seconds * fps)))
-    clip = frames[:n]
+    series = block_flow_series(frames[:n], block)
     cam = None
-    if camera is not None and camera.track is not None:
-        cam = Track(camera.track.dx[:n], camera.track.dy[:n], camera.track.response[:n])
+    if camera is not None and camera.track is not None and camera.jitter_px > STABILIZE_MIN_PX:
+        cam = (camera.track.dx[:n], camera.track.dy[:n])
     found = []
-    for rect in block_rects(clip.shape[1:], block):
-        track = track_patch(clip, rect)
-        if np.mean(track.response) < 0.15:
-            continue
-        if cam is not None:
-            track = Track(track.dx - cam.dx, track.dy - cam.dy, track.response)
-        peaks = find_peaks(track.along(track.principal_angle()), fps, min_snr=MIN_SNR)
-        if peaks:
-            found.append(Region(rect, peaks[0].freq_hz, peaks[0].amplitude, peaks[0].snr))
-    return tuple(sorted(found, key=lambda r: r.amplitude_px * math.sqrt(r.snr), reverse=True)[:top])
+    for r in range(series.shape[1]):
+        for c in range(series.shape[2]):
+            dx, dy = series[:, r, c, 0], series[:, r, c, 1]
+            if cam is not None:
+                dx, dy = dx - cam[0], dy - cam[1]
+            track = Track(dx, dy, np.ones(n))
+            peaks = find_peaks(track.along(track.principal_angle()), fps, min_snr=DISCOVERY_SNR)
+            if peaks:
+                found.append(Region((c * block, r * block, block, block), peaks[0].freq_hz, peaks[0].amplitude,
+                                    peaks[0].snr))
+    return tuple(sorted(found, key=lambda g: g.amplitude_px * math.sqrt(g.snr), reverse=True)[:top])
 
 
 def target_rect(markers: Markers, shape: tuple[int, int]) -> tuple[int, int, int, int] | None:

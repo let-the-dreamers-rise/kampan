@@ -1,0 +1,1132 @@
+[
+ {
+  "name": "clean",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "good capture of a healthy machine",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.004944499865346,
+   "velocity": 0.9532476916202411,
+   "captures": 1,
+   "questions": 0,
+   "actions": [
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 8.7,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.95 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.004944499865346,
+   "velocity": 0.950903438617131
+  }
+ },
+ {
+  "name": "slowmo-untagged",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "slow-motion file whose container says 30 fps and carries no capture tag",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.004944499865346,
+   "velocity": 0.9532476916202411,
+   "captures": 1,
+   "questions": 1,
+   "actions": [
+    "AskHuman",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 9.8,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.95 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 2.625618062483168,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "far",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.327,
+  "true_zone": "A",
+  "note": "camera too far: motion below the noise floor",
+  "amp_px_at_start": [
+   0.0058
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 21.001513122160727,
+   "velocity": 0.3214075576049363,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 8.6,
+   "summary": "Zone A: typical of newly commissioned machines. 0.32 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "missed",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "handheld-referenced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "hand shake, static reference marker visible",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.990417474171565,
+   "velocity": 0.8303702828820436,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 12.0,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.83 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 7.012732134985949,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "handheld-unreferenced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "hand shake, no static reference",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.994498499638297,
+   "velocity": 0.932121977054019,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 13.3,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.93 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 7.012732134985949,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "aliased",
+  "true_hz": 140.0,
+  "true_velocity_mm_s": 3.732,
+  "true_zone": "C",
+  "note": "vibration above the Nyquist limit of 240 fps",
+  "amp_px_at_start": [
+   0.02
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": true,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 140.0073083,
+   "velocity": 3.609959982071794,
+   "captures": 3,
+   "questions": 2,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "AskHuman",
+    "ProposeTicket"
+   ],
+   "ticket": true,
+   "seconds": 6.7,
+   "summary": "Zone C: unsatisfactory for long-term operation; plan maintenance. 3.61 mm/s RMS, strongest at 140.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 100.02884811243202,
+   "velocity": 2.7384752389328657
+  }
+ },
+ {
+  "name": "no-markers",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "no marker in view",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.994498499638297,
+   "velocity": 0.932121977054019,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 15.1,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.93 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "missed",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "oblique",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 2.053,
+  "true_zone": "C",
+  "note": "camera at 60 degrees to the machine face, horizontal vibration",
+  "amp_px_at_start": [
+   0.0733
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.997689997694867,
+   "velocity": 1.0294690704552985,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 10.3,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 1.03 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.99651325746335,
+   "velocity": 1.441729352293512
+  }
+ },
+ {
+  "name": "unbalanced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 3.35,
+  "true_zone": "C",
+  "note": "coin on a blade: strong 1x",
+  "amp_px_at_start": [
+   0.1167,
+   0.0133
+  ],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 21.002083347962845,
+   "velocity": 3.228820181535902,
+   "captures": 1,
+   "questions": 2,
+   "actions": [
+    "AskHuman",
+    "ProposeTicket"
+   ],
+   "ticket": true,
+   "seconds": 4.3,
+   "summary": "Zone C: unsatisfactory for long-term operation; plan maintenance. 3.23 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 21.002083347962845,
+   "velocity": 3.221029683487514
+  }
+ },
+ {
+  "name": "machine-off",
+  "true_hz": null,
+  "true_velocity_mm_s": 0.0,
+  "true_zone": "A",
+  "note": "nothing vibrates",
+  "amp_px_at_start": [],
+  "seed": 0,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null,
+   "captures": 3,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 15.1,
+   "summary": "No vibration above the noise floor: below 0.0010 mm peak displacement at the closest distance tried."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "clean",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "good capture of a healthy machine",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.00134991632183,
+   "velocity": 0.9296997751254121,
+   "captures": 1,
+   "questions": 0,
+   "actions": [
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 4.1,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.93 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.00134991632183,
+   "velocity": 0.9274294138550985
+  }
+ },
+ {
+  "name": "slowmo-untagged",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "slow-motion file whose container says 30 fps and carries no capture tag",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.00134991632183,
+   "velocity": 0.9296997751254121,
+   "captures": 1,
+   "questions": 1,
+   "actions": [
+    "AskHuman",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 4.1,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.93 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 2.6251687395402286,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "far",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.327,
+  "true_zone": "A",
+  "note": "camera too far: motion below the noise floor",
+  "amp_px_at_start": [
+   0.0058
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 21.01274436508665,
+   "velocity": 0.3333902031565435,
+   "captures": 3,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 12.4,
+   "summary": "Zone A: typical of newly commissioned machines. 0.33 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "missed",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "handheld-referenced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "hand shake, static reference marker visible",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.986792096126656,
+   "velocity": 0.8721326674488483,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 9.9,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.87 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 7.976204922250601,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "handheld-unreferenced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "hand shake, no static reference",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.993361241314812,
+   "velocity": 0.9067346661915506,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 14.5,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.91 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 7.976204922250601,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "aliased",
+  "true_hz": 140.0,
+  "true_velocity_mm_s": 3.732,
+  "true_zone": "C",
+  "note": "vibration above the Nyquist limit of 240 fps",
+  "amp_px_at_start": [
+   0.02
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": true,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 139.983713221,
+   "velocity": 3.9431580450971437,
+   "captures": 3,
+   "questions": 2,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "AskHuman",
+    "ProposeTicket"
+   ],
+   "ticket": true,
+   "seconds": 5.4,
+   "summary": "Zone C: unsatisfactory for long-term operation; plan maintenance. 3.94 mm/s RMS, strongest at 140.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 99.97636622552534,
+   "velocity": 2.149332923683896
+  }
+ },
+ {
+  "name": "no-markers",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "no marker in view",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.993361241314812,
+   "velocity": 0.9067346661915506,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 14.4,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.91 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "abstained",
+   "verdict": "abstain",
+   "zone": null,
+   "hz": 21.038240034801273,
+   "velocity": null
+  }
+ },
+ {
+  "name": "oblique",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 2.053,
+  "true_zone": "C",
+  "note": "camera at 60 degrees to the machine face, horizontal vibration",
+  "amp_px_at_start": [
+   0.0733
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.00042893310266,
+   "velocity": 0.8938209516037173,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 8.9,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.89 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 20.999688388723687,
+   "velocity": 1.8024847692976187
+  }
+ },
+ {
+  "name": "unbalanced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 3.35,
+  "true_zone": "C",
+  "note": "coin on a blade: strong 1x",
+  "amp_px_at_start": [
+   0.1167,
+   0.0133
+  ],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 21.00021068357971,
+   "velocity": 3.1676560227497172,
+   "captures": 1,
+   "questions": 2,
+   "actions": [
+    "AskHuman",
+    "ProposeTicket"
+   ],
+   "ticket": true,
+   "seconds": 4.3,
+   "summary": "Zone C: unsatisfactory for long-term operation; plan maintenance. 3.17 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 21.00021068357971,
+   "velocity": 3.1600290093208216
+  }
+ },
+ {
+  "name": "machine-off",
+  "true_hz": null,
+  "true_velocity_mm_s": 0.0,
+  "true_zone": "A",
+  "note": "nothing vibrates",
+  "amp_px_at_start": [],
+  "seed": 1,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null,
+   "captures": 3,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 18.0,
+   "summary": "No vibration above the noise floor: below 0.0009 mm peak displacement at the closest distance tried."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "clean",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "good capture of a healthy machine",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.997959918232386,
+   "velocity": 0.934413596534101,
+   "captures": 1,
+   "questions": 0,
+   "actions": [
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 3.9,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.93 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.997959918232386,
+   "velocity": 0.9321238518248497
+  }
+ },
+ {
+  "name": "slowmo-untagged",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "slow-motion file whose container says 30 fps and carries no capture tag",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.997959918232386,
+   "velocity": 0.934413596534101,
+   "captures": 1,
+   "questions": 1,
+   "actions": [
+    "AskHuman",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 4.3,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.93 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 2.6247449897790482,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "far",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.327,
+  "true_zone": "A",
+  "note": "camera too far: motion below the noise floor",
+  "amp_px_at_start": [
+   0.0058
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 21.00834378918844,
+   "velocity": 0.3307352445247097,
+   "captures": 3,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 15.7,
+   "summary": "Zone A: typical of newly commissioned machines. 0.33 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "missed",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "handheld-referenced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "hand shake, static reference marker visible",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.005145723074254,
+   "velocity": 0.8975029765715238,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 10.6,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.90 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 7.9254898109449865,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "handheld-unreferenced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "hand shake, no static reference",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.000090839543812,
+   "velocity": 0.9011309725706931,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 13.4,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.90 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "A",
+   "hz": 7.9254898109449865,
+   "velocity": 0.0
+  }
+ },
+ {
+  "name": "aliased",
+  "true_hz": 140.0,
+  "true_velocity_mm_s": 3.732,
+  "true_zone": "C",
+  "note": "vibration above the Nyquist limit of 240 fps",
+  "amp_px_at_start": [
+   0.02
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": true,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 140.033113298,
+   "velocity": 4.282556174387421,
+   "captures": 3,
+   "questions": 2,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "AskHuman",
+    "ProposeTicket"
+   ],
+   "ticket": true,
+   "seconds": 7.2,
+   "summary": "Zone C: unsatisfactory for long-term operation; plan maintenance. 4.28 mm/s RMS, strongest at 140.0 Hz."
+  },
+  "baseline": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 99.97718713254878,
+   "velocity": 2.3142155223457213
+  }
+ },
+ {
+  "name": "no-markers",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 0.974,
+  "true_zone": "B",
+  "note": "no marker in view",
+  "amp_px_at_start": [
+   0.0333,
+   0.005
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 21.000090839543812,
+   "velocity": 0.9011309725706931,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 15.0,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 0.90 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "missed",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ },
+ {
+  "name": "oblique",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 2.053,
+  "true_zone": "C",
+  "note": "camera at 60 degrees to the machine face, horizontal vibration",
+  "amp_px_at_start": [
+   0.0733
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "wrong",
+   "verdict": "graded",
+   "zone": "B",
+   "hz": 20.979143148370014,
+   "velocity": 1.0772105486341883,
+   "captures": 2,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 9.0,
+   "summary": "Zone B: acceptable for unrestricted long-term operation. 1.08 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 21.01075440305618,
+   "velocity": 2.158560858121354
+  }
+ },
+ {
+  "name": "unbalanced",
+  "true_hz": 21.0,
+  "true_velocity_mm_s": 3.35,
+  "true_zone": "C",
+  "note": "coin on a blade: strong 1x",
+  "amp_px_at_start": [
+   0.1167,
+   0.0133
+  ],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 20.99979397659966,
+   "velocity": 3.279892808771494,
+   "captures": 1,
+   "questions": 2,
+   "actions": [
+    "AskHuman",
+    "ProposeTicket"
+   ],
+   "ticket": true,
+   "seconds": 4.3,
+   "summary": "Zone C: unsatisfactory for long-term operation; plan maintenance. 3.28 mm/s RMS, strongest at 21.0 Hz."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "graded",
+   "zone": "C",
+   "hz": 20.99979397659966,
+   "velocity": 3.271892836984877
+  }
+ },
+ {
+  "name": "machine-off",
+  "true_hz": null,
+  "true_velocity_mm_s": 0.0,
+  "true_zone": "A",
+  "note": "nothing vibrates",
+  "amp_px_at_start": [],
+  "seed": 2,
+  "nyquist": 120.0,
+  "aliased": false,
+  "two_pi": 6.283,
+  "agent": {
+   "outcome": "correct",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null,
+   "captures": 3,
+   "questions": 0,
+   "actions": [
+    "Recapture",
+    "Recapture",
+    "Report"
+   ],
+   "ticket": false,
+   "seconds": 14.1,
+   "summary": "No vibration above the noise floor: below 0.0011 mm peak displacement at the closest distance tried."
+  },
+  "baseline": {
+   "outcome": "correct",
+   "verdict": "below_detection",
+   "zone": null,
+   "hz": null,
+   "velocity": null
+  }
+ }
+]
