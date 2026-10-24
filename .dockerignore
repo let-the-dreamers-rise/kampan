@@ -1,0 +1,13 @@
+.git
+.venv
+out
+clips
+capture_kit
+docs
+tests
+eval
+tools
+infra
+**/__pycache__
+*.mp4
+*.avi

@@ -1,0 +1,189 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Kampan - phone-video vibration measurement with an agent. One Lambda container (OpenCV 5) behind a
+  function URL serves the page and the API; clips go to a private S3 bucket through presigned POSTs and are
+  deleted after one day.
+
+Parameters:
+  ImageUri:
+    Type: String
+    Description: ECR image URI with digest, for example 123456789012.dkr.ecr.us-east-1.amazonaws.com/kampan@sha256:...
+  ReservedConcurrency:
+    Type: Number
+    Default: 4
+    MinValue: 1
+    MaxValue: 20
+    Description: Upper bound on parallel analyses; caps cost and abuse.
+
+Resources:
+  ClipBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LifecycleConfiguration:
+        Rules:
+          - Id: delete-uploads-after-one-day
+            Status: Enabled
+            Prefix: uploads/
+            ExpirationInDays: 1
+          - Id: abort-incomplete-uploads
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 1
+      CorsConfiguration:
+        CorsRules:
+          - AllowedMethods: [POST]
+            AllowedOrigins: ["*"]
+            AllowedHeaders: ["*"]
+            MaxAge: 3000
+
+  ClipBucketTlsOnly:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ClipBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt ClipBucket.Arn
+              - !Sub "${ClipBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
+
+  FunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+      Policies:
+        - PolicyName: clips
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: [s3:GetObject]
+                Resource:
+                  - !Sub "${ClipBucket.Arn}/uploads/*"
+                  - !Sub "${ClipBucket.Arn}/samples/*"
+              - Effect: Allow
+                Action: [s3:PutObject]
+                Resource: !Sub "${ClipBucket.Arn}/uploads/*"
+
+  FunctionLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-api"
+      RetentionInDays: 14
+
+  Function:
+    Type: AWS::Lambda::Function
+    DependsOn: FunctionLogs
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-api"
+      PackageType: Image
+      Code:
+        ImageUri: !Ref ImageUri
+      Role: !GetAtt FunctionRole.Arn
+      Architectures: [x86_64]
+      MemorySize: 3008
+      Timeout: 300
+      EphemeralStorage:
+        Size: 4096
+      ReservedConcurrentExecutions: !Ref ReservedConcurrency
+      TracingConfig:
+        Mode: Active
+      Environment:
+        Variables:
+          KAMPAN_BUCKET: !Ref ClipBucket
+
+  FunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !GetAtt Function.Arn
+      AuthType: NONE
+      InvokeMode: BUFFERED
+
+  FunctionUrlPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Function
+      Action: lambda:InvokeFunctionUrl
+      Principal: "*"
+      FunctionUrlAuthType: NONE
+
+  FunctionUrlInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Function
+      Action: lambda:InvokeFunction
+      Principal: "*"
+      InvokedViaFunctionUrl: true
+
+  ErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Kampan API errors
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref Function
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 3
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+
+  Dashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub "${AWS::StackName}-agent"
+      DashboardBody: !Sub |
+        {"widgets": [
+          {"type": "metric", "x": 0, "y": 0, "width": 12, "height": 6, "properties": {
+            "title": "Analyses by agent status", "region": "${AWS::Region}", "stat": "SampleCount", "period": 3600,
+            "metrics": [["Kampan", "AnalyzeSeconds", "Status", "done"], ["...", "need_capture"], ["...", "need_answer"]]}},
+          {"type": "metric", "x": 12, "y": 0, "width": 12, "height": 6, "properties": {
+            "title": "Analysis time (s)", "region": "${AWS::Region}", "stat": "p90", "period": 3600,
+            "metrics": [["Kampan", "AnalyzeSeconds", "Status", "done"], ["...", "need_capture"]]}},
+          {"type": "metric", "x": 0, "y": 6, "width": 12, "height": 6, "properties": {
+            "title": "Lambda invocations and errors", "region": "${AWS::Region}", "stat": "Sum", "period": 3600,
+            "metrics": [["AWS/Lambda", "Invocations", "FunctionName", "${Function}"], [".", "Errors", ".", "."],
+                         [".", "Throttles", ".", "."]]}},
+          {"type": "log", "x": 12, "y": 6, "width": 12, "height": 6, "properties": {
+            "title": "Latest agent decisions", "region": "${AWS::Region}",
+            "query": "SOURCE '/aws/lambda/${Function}' | filter kind = 'agent_event' and event.kind = 'decision' | fields @timestamp, event.action, event.because.rule, event.detail.reason | sort @timestamp desc | limit 20"}}
+        ]}
+
+Outputs:
+  Url:
+    Description: The app
+    Value: !GetAtt FunctionUrl.FunctionUrl
+  Bucket:
+    Value: !Ref ClipBucket
+  Dashboard:
+    Value: !Sub "https://${AWS::Region}.console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#dashboards:name=${AWS::StackName}-agent"

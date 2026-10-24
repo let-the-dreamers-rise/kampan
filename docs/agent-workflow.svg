@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b1d1f"/></marker>
+  </defs>
+  <rect width="1100" height="620" fill="#ffffff"/>
+  <text x="24" y="34" font-size="20" font-weight="700" fill="#1b1d1f">Kampan agent: perceive, decide, act</text>
+  <text x="24" y="56" fill="#5d636a">The first rule that fires decides. Every decision is logged with the measured numbers that triggered it.</text>
+
+  <rect x="24" y="86" width="330" height="440" rx="12" fill="#f0f7f6" stroke="#0f6b62" stroke-width="2"/>
+  <text x="42" y="114" font-size="16" font-weight="700" fill="#0f6b62">1. Perceive (OpenCV 5 tools)</text>
+  <g fill="#1b1d1f">
+    <text x="42" y="146" font-weight="600">probe_timebase</text><text x="42" y="164" fill="#5d636a">container fps, slow-motion tag</text>
+    <text x="42" y="194" font-weight="600">find_markers</text><text x="42" y="212" fill="#5d636a">cv.aruco.ArucoDetector, sub-pixel corners</text>
+    <text x="42" y="242" font-weight="600">measure_scale</text><text x="42" y="260" fill="#5d636a">homography Jacobian: mm per px by direction</text>
+    <text x="42" y="290" font-weight="600">camera_motion</text><text x="42" y="308" fill="#5d636a">findTransformECC on the still marker, or</text><text x="42" y="326" fill="#5d636a">on the whole frame with the machine masked</text>
+    <text x="42" y="356" font-weight="600">discover_regions</text><text x="42" y="374" fill="#5d636a">DIS optical flow, periodic blocks ranked</text>
+    <text x="42" y="404" font-weight="600">measure_roi</text><text x="42" y="422" fill="#5d636a">findTransformECC per frame, principal axis,</text><text x="42" y="440" fill="#5d636a">spectrum, peaks, noise floor</text>
+    <text x="42" y="470" font-weight="600">alias check</text><text x="42" y="488" fill="#5d636a">peak near Nyquist, or not an order of</text><text x="42" y="506" fill="#5d636a">the running speed</text>
+  </g>
+
+  <rect x="394" y="86" width="330" height="440" rx="12" fill="#fffaf2" stroke="#c27c0e" stroke-width="2"/>
+  <text x="412" y="114" font-size="16" font-weight="700" fill="#a15c07">2. Decide (ordered rules)</text>
+  <g>
+    <text x="412" y="148" font-weight="600">rule_timebase</text><text x="412" y="166" fill="#5d636a">rate not trusted: ask the frame rate</text>
+    <text x="412" y="198" font-weight="600">rule_shake</text><text x="412" y="216" fill="#5d636a">shake too large, or nothing still to subtract:</text><text x="412" y="234" fill="#5d636a">recapture on a support with a reference marker</text>
+    <text x="412" y="266" font-weight="600">rule_scale</text><text x="412" y="284" fill="#5d636a">no marker, or oblique view: recapture</text>
+    <text x="412" y="316" font-weight="600">rule_quality</text><text x="412" y="334" fill="#5d636a">tracking correlation low: more light, focus</text>
+    <text x="412" y="366" font-weight="600">rule_snr</text><text x="412" y="384" fill="#5d636a">no peak above 6x noise: move closer, or report</text><text x="412" y="402" fill="#5d636a">an upper bound at the closest distance</text>
+    <text x="412" y="434" font-weight="600">rule_alias</text><text x="412" y="452" fill="#5d636a">pick the frame rate that separates candidates;</text><text x="412" y="470" fill="#5d636a">if none can, report ambiguity</text>
+    <text x="412" y="502" font-weight="600">rule_grade</text><text x="412" y="520" fill="#5d636a">ISO zone; zone C or D asks the running speed</text>
+  </g>
+
+  <rect x="764" y="86" width="312" height="440" rx="12" fill="#f7f5ff" stroke="#6b4fbb" stroke-width="2"/>
+  <text x="782" y="114" font-size="16" font-weight="700" fill="#55409a">3. Act</text>
+  <g>
+    <text x="782" y="150" font-weight="600">Recapture</text><text x="782" y="168" fill="#5d636a">exact instruction: distance, fps, support,</text><text x="782" y="186" fill="#5d636a">markers, square-on. The person films;</text><text x="782" y="204" fill="#5d636a">in evaluation, the simulator renders it.</text>
+    <text x="782" y="240" font-weight="600">AskHuman</text><text x="782" y="258" fill="#5d636a">frame rate of this file, running speed</text>
+    <text x="782" y="294" font-weight="600">Report</text><text x="782" y="312" fill="#5d636a">graded, below detection (with a bound),</text><text x="782" y="330" fill="#5d636a">ambiguous, or abstain; caveats attached</text>
+    <text x="782" y="366" font-weight="600">ProposeTicket</text><text x="782" y="384" fill="#5d636a">zone C or D: drafted, then held until a</text><text x="782" y="402" fill="#5d636a">person approves. Never sent automatically.</text>
+    <text x="782" y="438" font-weight="600">Budgets</text><text x="782" y="456" fill="#5d636a">at most 5 clips and 4 questions,</text><text x="782" y="474" fill="#5d636a">then abstain with the last issue</text>
+  </g>
+
+  <line x1="354" y1="300" x2="390" y2="300" stroke="#1b1d1f" marker-end="url(#a)" stroke-width="2"/>
+  <line x1="724" y1="300" x2="760" y2="300" stroke="#1b1d1f" marker-end="url(#a)" stroke-width="2"/>
+  <path d="M920,526 L920,580 L189,580 L189,530" fill="none" stroke="#1b1d1f" stroke-width="2" marker-end="url(#a)"/>
+  <text x="420" y="600" fill="#5d636a">a new clip or an answer goes back into perception; the trace records every step</text>
+</svg>

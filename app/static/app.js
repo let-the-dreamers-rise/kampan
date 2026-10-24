@@ -107,7 +107,11 @@ function describe(e) {
     const asks = [r.fps ? `${r.fps} fps` : null, r.distance !== 1 ? `distance x${fmt(r.distance)}` : null, r.tripod ? "support" : null, r.markers ? "markers" : null, r.square_on ? "square-on" : null].filter(Boolean);
     return [`Clip ${e.index + 1} received`, asks.length ? `conditions asked: ${asks.join(", ")}` : "first clip"];
   }
-  if (e.kind === "human") return [`You answered: ${e.answer}`, e.question];
+  if (e.kind === "human") {
+    const shown = e.field === "running_hz" && typeof e.answer === "number" ? `${Math.round(e.answer * 60)} rpm (${fmt(e.answer, 1)} Hz)`
+      : e.field === "approve_ticket" ? (e.answer ? "approved" : "declined") : e.answer === null ? "unknown" : e.answer;
+    return [`You answered: ${shown}`, e.question];
+  }
   const d = e.detail || {};
   const b = e.because || {};
   const facts = `fps ${fmt(b.fps, 0)} (${b.timebase}) | markers ${JSON.stringify(b.markers)} | shake ${fmt(b.jitter_px, 3)} px | peak ${fmt(b.top_hz, 1)} Hz | SNR ${fmt(b.snr, 1)} | noise ${fmt(b.noise_px, 4)} px`;

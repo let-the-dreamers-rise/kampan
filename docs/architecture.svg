@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1b1d1f"/></marker>
+  </defs>
+  <rect width="1100" height="560" fill="#ffffff"/>
+  <text x="24" y="34" font-size="20" font-weight="700" fill="#1b1d1f">Kampan architecture</text>
+  <text x="24" y="56" fill="#5d636a">Everything that measures runs on OpenCV 5.0.0 inside one AWS Lambda container. No LLM and no paid API is called.</text>
+
+  <rect x="24" y="100" width="170" height="84" rx="10" fill="#f4f2ec" stroke="#1b1d1f"/>
+  <text x="40" y="128" font-weight="700">Phone</text>
+  <text x="40" y="150" fill="#5d636a">slow-motion clip,</text>
+  <text x="40" y="170" fill="#5d636a">ArUco markers in view</text>
+
+  <rect x="24" y="260" width="170" height="110" rx="10" fill="#f4f2ec" stroke="#1b1d1f"/>
+  <text x="40" y="288" font-weight="700">Browser</text>
+  <text x="40" y="310" fill="#5d636a">upload, agent timeline,</text>
+  <text x="40" y="330" fill="#5d636a">answers, approvals,</text>
+  <text x="40" y="350" fill="#5d636a">results</text>
+  <line x1="109" y1="184" x2="109" y2="256" stroke="#1b1d1f" marker-end="url(#a)"/>
+  <text x="118" y="226" fill="#5d636a" font-size="12">file</text>
+
+  <rect x="250" y="84" width="826" height="450" rx="14" fill="#fffaf2" stroke="#c27c0e" stroke-dasharray="6 4"/>
+  <text x="268" y="110" font-weight="700" fill="#a15c07">AWS (us-east-1), one CloudFormation stack</text>
+
+  <rect x="290" y="140" width="180" height="70" rx="10" fill="#ffffff" stroke="#1b1d1f"/>
+  <text x="306" y="168" font-weight="700">Lambda function URL</text>
+  <text x="306" y="190" fill="#5d636a">HTTPS, page + JSON API</text>
+
+  <rect x="290" y="420" width="230" height="90" rx="10" fill="#ffffff" stroke="#1b1d1f"/>
+  <text x="306" y="448" font-weight="700">S3 bucket (private)</text>
+  <text x="306" y="470" fill="#5d636a">uploads/: deleted after 1 day</text>
+  <text x="306" y="490" fill="#5d636a">samples/: simulated clips</text>
+
+  <line x1="194" y1="300" x2="286" y2="190" stroke="#1b1d1f" marker-end="url(#a)"/>
+  <text x="290" y="236" fill="#5d636a" font-size="12">API: upload, analyze</text>
+  <line x1="194" y1="350" x2="286" y2="450" stroke="#1b1d1f" marker-end="url(#a)"/>
+  <text x="290" y="392" fill="#5d636a" font-size="12">presigned POST</text>
+  <text x="290" y="408" fill="#5d636a" font-size="12">(TLS only, size cap)</text>
+
+  <rect x="520" y="140" width="530" height="260" rx="12" fill="#ffffff" stroke="#0f6b62" stroke-width="2"/>
+  <text x="538" y="166" font-weight="700" fill="#0f6b62">Lambda container: Python 3.12 + opencv-python-headless 5.0.0.93</text>
+  <text x="538" y="192" font-weight="700">Agent loop (kampan/agent)</text>
+  <text x="538" y="212" fill="#5d636a">perceive with OpenCV tools, decide by ordered rules, act: report, ask,</text>
+  <text x="538" y="230" fill="#5d636a">request a recapture, or hold a ticket for human approval</text>
+  <text x="538" y="258" font-weight="700">OpenCV 5 measurement (kampan)</text>
+  <text x="538" y="278" fill="#5d636a">VideoCapture decode, ArUco detection with sub-pixel corners,</text>
+  <text x="538" y="296" fill="#5d636a">homography scale, findTransformECC tracking (masked for camera shake),</text>
+  <text x="538" y="314" fill="#5d636a">DIS optical flow region search, Laplacian-pyramid motion magnification</text>
+  <text x="538" y="342" font-weight="700">Physics</text>
+  <text x="538" y="362" fill="#5d636a">spectrum, noise floor, aliasing resolution across frame rates,</text>
+  <text x="538" y="380" fill="#5d636a">ISO 10816-1 velocity zones, order-based fault signatures</text>
+  <line x1="470" y1="175" x2="516" y2="175" stroke="#1b1d1f" marker-end="url(#a)"/>
+  <line x1="520" y1="440" x2="600" y2="404" stroke="#1b1d1f" marker-end="url(#a)"/>
+  <text x="560" y="452" fill="#5d636a" font-size="12">GetObject</text>
+
+  <rect x="700" y="430" width="350" height="80" rx="10" fill="#ffffff" stroke="#1b1d1f"/>
+  <text x="716" y="456" font-weight="700">CloudWatch + X-Ray</text>
+  <text x="716" y="476" fill="#5d636a">every agent decision as a JSON log line, EMF metrics,</text>
+  <text x="716" y="494" fill="#5d636a">dashboard, error alarm, traces</text>
+  <line x1="860" y1="400" x2="860" y2="426" stroke="#1b1d1f" marker-end="url(#a)"/>
+
+  <text x="520" y="528" fill="#5d636a" font-size="12">Image in ECR (scan on push). Reserved concurrency caps cost. Least-privilege IAM role.</text>
+</svg>

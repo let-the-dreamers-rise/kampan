@@ -124,7 +124,10 @@ def analyze(body: dict, storage: Storage) -> dict:
     clips = body.get("clips")
     if not isinstance(clips, list) or not 1 <= len(clips) <= MAX_CLIPS:
         raise BadRequest(f"clips must be a list of 1 to {MAX_CLIPS} keys")
-    keys = [check_key(k) for k in clips]
+    try:
+        keys = [check_key(k) for k in clips]
+    except ValueError as exc:
+        raise BadRequest(str(exc)) from exc
     cfg = parse_config(body.get("config"))
     answers = parse_answers(body.get("answers"))
     t0 = time.perf_counter()
