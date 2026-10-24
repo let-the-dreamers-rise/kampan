@@ -24,7 +24,7 @@ CHOSEN = {
     "clean": ("Healthy fan (simulated)", "A good capture of a healthy machine. One clip, graded directly."),
     "unbalanced": ("Unbalanced fan (simulated)", "Strong 1x vibration. The agent asks the running speed, names the "
                    "fault and holds a maintenance ticket for your approval."),
-    "far": ("Camera too far (simulated)", "The first clip is below the noise floor. The agent asks for closer clips."),
+    "far": ("Camera too far (simulated)", "Small motion seen from a distance. The agent checks it clears the noise floor before grading."),
     "slowmo-untagged": ("Slow-motion file without metadata (simulated)", "The file says 30 fps. The agent asks what "
                         "rate it was really filmed at."),
     "handheld-unreferenced": ("Handheld, no reference (simulated)", "Hand shake with nothing still to subtract. The "

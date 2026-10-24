@@ -1,7 +1,9 @@
 # Windows variant of deploy.sh: AWS CLI on Windows, Docker Engine inside WSL (Ubuntu-24.04).
 # Usage (from the repo root): powershell -File infra/deploy.ps1 [-Stack kampan] [-Region us-east-1]
 param([string]$Stack = "kampan", [string]$Region = "us-east-1", [string]$Distro = "Ubuntu-24.04")
-$ErrorActionPreference = "Stop"
+# Native tools report failures through exit codes, checked by Check(). "Stop" would turn any stderr line into a
+# fatal error in Windows PowerShell 5.1, including the expected "repository not found" on a first deploy.
+$ErrorActionPreference = "Continue"
 $env:WSL_UTF8 = "1"
 
 function Check($what) { if ($LASTEXITCODE -ne 0) { throw "$what failed (exit $LASTEXITCODE)" } }
@@ -11,7 +13,7 @@ $registry = "$account.dkr.ecr.$Region.amazonaws.com"
 $root = (Get-Location).Path
 $wslRoot = "/mnt/" + $root.Substring(0, 1).ToLower() + ($root.Substring(2) -replace '\\', '/')
 
-aws ecr describe-repositories --repository-names kampan --region $Region 2>$null | Out-Null
+aws ecr describe-repositories --repository-names kampan --region $Region 2>&1 | Out-Null
 if ($LASTEXITCODE -ne 0) {
   aws ecr create-repository --repository-name kampan --image-scanning-configuration scanOnPush=true --region $Region | Out-Null
   Check "ecr create"

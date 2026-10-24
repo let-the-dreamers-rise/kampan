@@ -36,7 +36,7 @@
  {
   "id": "far",
   "title": "Camera too far (simulated)",
-  "description": "The first clip is below the noise floor. The agent asks for closer clips.",
+  "description": "Small motion seen from a distance. The agent checks it clears the noise floor before grading.",
   "label": "simulated",
   "clips": [
    "samples/far-0.avi"
