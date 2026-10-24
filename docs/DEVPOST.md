@@ -1,6 +1,6 @@
 # Devpost submission text
 
-Paste these into the Devpost form. Fill APP_URL after deployment. The user submits.
+Paste these into the Devpost form. The user submits.
 
 ## Project name
 
@@ -63,7 +63,7 @@ opencv, python, numpy, aws-lambda, amazon-s3, amazon-cloudwatch, aws-x-ray, aws-
 
 ## Links
 
-- App: APP_URL
+- App: https://4qxecavgpe5btmwt7jk4nzqwfi0xdlhl.lambda-url.us-east-1.on.aws/
 - Code: https://github.com/let-the-dreamers-rise/kampan
 - Report: https://github.com/let-the-dreamers-rise/kampan/blob/main/docs/REPORT.md
 

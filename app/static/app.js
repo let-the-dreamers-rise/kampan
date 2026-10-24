@@ -29,9 +29,16 @@ function config() {
   return session.sample ? { ...base, ...session.sample.config } : base;
 }
 
-async function api(path, body) {
+async function api(path, body, retries = 1) {
   const res = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {});
-  const data = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+  let data;
+  try {
+    data = await res.json();
+  } catch {
+    // A cut-off body (seen behind local antivirus proxies) is retried once; the server has cached the result.
+    if (res.ok && retries > 0) return api(path, body, retries - 1);
+    throw new Error(`HTTP ${res.status}: the response could not be read`);
+  }
   if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
   return data;
 }
