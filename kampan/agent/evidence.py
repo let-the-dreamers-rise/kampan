@@ -8,7 +8,8 @@ from kampan.agent.config import AgentConfig
 from kampan.agent.trace import Trace
 from kampan.diagnose import order_of
 from kampan.measure import (MIN_SNR, CameraMotion, Capture, Measurement, ScaleReport, TimeBase, camera_motion,
-                            discover_regions, find_markers, measure_roi, measure_scale, probe_timebase, target_rect)
+                            discover_regions, exclusion_rect, find_markers, measure_roi, measure_scale, probe_timebase,
+                            target_rect)
 from kampan.severity import velocity_rms_mm_s
 from kampan.spectrum import Peak
 
@@ -60,8 +61,9 @@ def assess(capture: Capture, request: CaptureRequest, answers: dict, cfg: AgentC
     markers = trace.tool("find_markers", find_markers, frames, inputs={"frames": list(frames.shape)})
     scale = trace.tool("measure_scale", measure_scale, markers, cfg.marker_mm, inputs={"marker_mm": cfg.marker_mm})
     rect, source = target_rect(markers, frames.shape[1:]), "target marker"
-    camera = trace.tool("camera_motion", camera_motion, frames, markers, tb.fps, rect,
-                        inputs={"fps": tb.fps, "exclude": rect})
+    exclude = exclusion_rect(markers, frames.shape[1:])
+    camera = trace.tool("camera_motion", camera_motion, frames, markers, tb.fps, exclude,
+                        inputs={"fps": tb.fps, "exclude": exclude})
     if rect is None:
         regions = trace.tool("discover_regions", discover_regions, frames, tb.fps, camera, cfg.discover_block,
                              inputs={"block": cfg.discover_block})

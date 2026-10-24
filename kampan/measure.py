@@ -14,6 +14,8 @@ from kampan.spectrum import Peak, find_peaks, noise_floor
 TARGET_ID, REFERENCE_ID = 0, 1
 TRUSTED_CONTAINER_FPS = 90.0
 MIN_SNR = 6.0
+STABILIZE_MIN_PX = 0.05  # subtract camera motion only above this RMS; below it subtraction only adds noise
+EXCLUDE_GROW = 2.0  # the machine extends beyond its marker: mask this multiple of the marker box
 
 
 @dataclass(frozen=True)
@@ -151,7 +153,7 @@ class Measurement:
 def measure_roi(frames: np.ndarray, fps: float, rect: tuple[int, int, int, int],
                 camera: CameraMotion | None) -> Measurement:
     track = track_patch(frames, rect)
-    stabilized = camera is not None and camera.track is not None
+    stabilized = camera is not None and camera.track is not None and camera.jitter_px > STABILIZE_MIN_PX
     if stabilized:
         track = Track(track.dx - camera.track.dx, track.dy - camera.track.dy, track.response)
     angle = track.principal_angle()
@@ -192,3 +194,8 @@ def discover_regions(frames: np.ndarray, fps: float, camera: CameraMotion | None
 
 def target_rect(markers: Markers, shape: tuple[int, int]) -> tuple[int, int, int, int] | None:
     return _bbox(markers.target, 1.25, shape) if markers.target is not None else None
+
+
+def exclusion_rect(markers: Markers, shape: tuple[int, int]) -> tuple[int, int, int, int] | None:
+    """Region masked out when estimating camera motion from the whole frame."""
+    return _bbox(markers.target, EXCLUDE_GROW, shape) if markers.target is not None else None
