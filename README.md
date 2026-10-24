@@ -17,6 +17,23 @@ Kampan's agent measures each condition with OpenCV 5 before it grades anything. 
 with a specific instruction, or asks the person one question. When severity reaches ISO 10816-1 zone C or D, it drafts a
 maintenance ticket and holds it for human approval.
 
+## Using it
+
+Open the app on a phone or laptop. You can try the agent on simulated samples without an account.
+
+| Role | What they do in the app |
+|---|---|
+| Lead | Creates an account with a passkey, registers machines (ISO class, running speed, marker size), invites technicians with a one-time link, approves or declines maintenance tickets, and shares a read-only report of a machine. |
+| Technician | Joins from the invite link, picks a machine, uploads a slow-motion clip, and follows the agent's checks and questions. When the agent drafts a ticket in zone C or D, the technician decides whether to send it to the lead. |
+| Viewer | Opens a shared link and sees the machine's readings and velocity trend, without names and without an account. |
+| Anyone | Sees live counts on the activity page: machines, readings, refusals and tickets. |
+
+Every reading is saved to the machine's history with the full agent trace, and compared with the previous reading. A rise of 25% or more is flagged even inside the same zone. The running speed the lead enters is passed to the agent, so it does not have to ask.
+
+One account can hold both roles at its own site, and anyone can switch to lead to set up their own site. The server checks the role on every call; the interface only hides what a role cannot do.
+
+Planned, not built: sending approved tickets by email or to a maintenance system, a live capture coach in the phone camera, and validation against an accelerometer.
+
 ## Results
 
 Closed-loop simulator, 10 capture scenarios, 3 seeds each. The baseline is the same OpenCV pipeline with no checks.
@@ -72,11 +89,20 @@ python -m venv .venv
 .venv/bin/python -m pytest
 ```
 
+The API tests sign up and sign in with a software passkey, and check roles, invites, site isolation, the ticket
+loop, share links, cross-site requests and rate limits. An end-to-end test drives Chrome with virtual passkeys
+through the whole loop; it needs Node with Playwright:
+
+```bash
+BASE=http://localhost:8765 PLAYWRIGHT_FROM=/path/with/playwright node tests/e2e/flow.mjs
+```
+
 ```bash
 KAMPAN_LOCAL_DIR=out/storage .venv/bin/python -m app.local_server
 ```
 
-Then open http://127.0.0.1:8765.
+Then open http://localhost:8765. Use `localhost`, not `127.0.0.1`, because passkeys need a host name. Local
+runs keep accounts in memory, so they disappear when the server stops.
 
 Reproduce the evaluation:
 
@@ -105,7 +131,9 @@ On Windows with Docker inside WSL, use `infra/deploy.ps1` instead.
 The stack contains:
 
 - **Lambda container image** (Python 3.12, opencv-python-headless 5.0.0.93) behind a function URL that serves both the UI and the API.
-- **Private S3 bucket** for uploads through presigned POST, capped at 300 MB, with uploads expiring after one day and a TLS-only policy.
+- **DynamoDB table** for accounts, sites, machines, readings, tickets, invites and counters, with TTL and point-in-time recovery.
+- **Secrets Manager secret**, generated at deploy time, that signs the HttpOnly session cookie.
+- **Private S3 bucket** for uploads and agent traces through presigned POST, capped at 300 MB, with uploads expiring after one day and a TLS-only policy.
 - **Observability:** CloudWatch logs with 14-day retention, embedded metrics, a dashboard, an error alarm and X-Ray tracing.
 - **Cost guard:** reserved concurrency of 4.
 
@@ -128,7 +156,9 @@ Print [capture_kit/kampan-markers-A4.pdf](capture_kit/kampan-markers-A4.pdf) at 
 |---|---|
 | `kampan/` | measurement tools, spectrum, de-aliasing, severity, diagnosis |
 | `kampan/agent/` | evidence, policy, loop, trace |
-| `app/` | Lambda handler, local server, storage, web UI |
+| `app/` | Lambda handler, routes, local server, storage |
+| `app/api/`, `app/domain/`, `app/repo/`, `app/auth/` | API handlers, records and rules, DynamoDB and in-memory tables, passkeys and sessions |
+| `app/static/` | web app: a small shell plus one module per view |
 | `eval/` | benchmarks; outputs in `docs/results/` |
 | `infra/` | CloudFormation template and deploy scripts |
 | `tests/` | pytest suite |

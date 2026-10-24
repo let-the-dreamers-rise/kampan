@@ -9,7 +9,8 @@ from collections import OrderedDict
 from pathlib import Path
 from typing import Any
 
-from app.storage import Storage, check_key
+from app.storage import Storage, check_clip_key
+from app.web import BadRequest
 from kampan.agent.config import AgentConfig
 from kampan.agent.trace import to_jsonable
 from kampan.measure import Capture
@@ -23,10 +24,6 @@ ALLOWED_TYPES = {"video/mp4", "video/quicktime", "video/x-msvideo", "video/webm"
                  "application/octet-stream"}
 _CACHE: "OrderedDict[str, Capture]" = OrderedDict()
 _CACHE_SIZE = 6
-
-
-class BadRequest(ValueError):
-    pass
 
 
 def _number(value: Any, lo: float, hi: float, name: str) -> float:
@@ -125,7 +122,7 @@ def analyze(body: dict, storage: Storage) -> dict:
     if not isinstance(clips, list) or not 1 <= len(clips) <= MAX_CLIPS:
         raise BadRequest(f"clips must be a list of 1 to {MAX_CLIPS} keys")
     try:
-        keys = [check_key(k) for k in clips]
+        keys = [check_clip_key(k) for k in clips]
     except ValueError as exc:
         raise BadRequest(str(exc)) from exc
     cfg = parse_config(body.get("config"))

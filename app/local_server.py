@@ -7,6 +7,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from app import handler as lambda_handler
 from app.storage import MAX_UPLOAD_BYTES, LocalStorage
+from app.web import MAX_BODY
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -17,6 +18,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(response.get("statusCode", 200))
         for key, value in response.get("headers", {}).items():
             self.send_header(key, value)
+        for cookie in response.get("cookies", []):
+            self.send_header("Set-Cookie", cookie)
         # Browsers dropped large close-delimited responses here; an explicit length fixes it.
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Connection", "close")
@@ -26,15 +29,18 @@ class Handler(BaseHTTPRequestHandler):
         self.close_connection = True
 
     def _event(self, method: str, body: str = "") -> dict:
-        return {"rawPath": self.path.split("?")[0], "body": body, "isBase64Encoded": False,
-                "requestContext": {"http": {"method": method}, "requestId": "local"}}
+        headers = {k.lower(): v for k, v in self.headers.items()}
+        headers.setdefault("x-forwarded-proto", "http")
+        return {"rawPath": self.path.split("?")[0], "body": body, "isBase64Encoded": False, "headers": headers,
+                "requestContext": {"http": {"method": method, "sourceIp": self.client_address[0]},
+                                   "requestId": "local"}}
 
     def do_GET(self) -> None:  # noqa: N802
         self._send(lambda_handler.handler(self._event("GET")))
 
     def do_POST(self) -> None:  # noqa: N802
         length = int(self.headers.get("Content-Length", 0))
-        body = self.rfile.read(min(length, lambda_handler.MAX_BODY + 1)).decode("utf-8", "replace")
+        body = self.rfile.read(min(length, MAX_BODY + 1)).decode("utf-8", "replace")
         self._send(lambda_handler.handler(self._event("POST", body)))
 
     def do_PUT(self) -> None:  # noqa: N802
@@ -45,7 +51,7 @@ class Handler(BaseHTTPRequestHandler):
         if length > MAX_UPLOAD_BYTES:
             self._send({"statusCode": 413, "body": "too large"})
             return
-        store = lambda_handler.storage()
+        store = lambda_handler.storage()  # a local upload stands in for the S3 presigned POST
         assert isinstance(store, LocalStorage)
         store.write_bytes(self.path.removeprefix("/local-upload/"), self.rfile.read(length))
         self._send({"statusCode": 200, "body": ""})
@@ -56,6 +62,7 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
     os.environ.setdefault("KAMPAN_LOCAL_DIR", "out/storage")
+    os.environ.setdefault("KAMPAN_INSECURE_COOKIES", "1")  # plain http on localhost; open http://localhost:PORT
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     print(f"Kampan on http://127.0.0.1:{args.port}")
     server.serve_forever()

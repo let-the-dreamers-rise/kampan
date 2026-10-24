@@ -66,6 +66,32 @@ Resources:
               Bool:
                 aws:SecureTransport: "false"
 
+  DataTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: pk, AttributeType: S }
+        - { AttributeName: sk, AttributeType: S }
+      KeySchema:
+        - { AttributeName: pk, KeyType: HASH }
+        - { AttributeName: sk, KeyType: RANGE }
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      SSESpecification:
+        SSEEnabled: true
+
+  SessionSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Kampan session-cookie signing key
+      GenerateSecretString:
+        PasswordLength: 64
+        ExcludePunctuation: true
+
   FunctionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -88,9 +114,22 @@ Resources:
                 Resource:
                   - !Sub "${ClipBucket.Arn}/uploads/*"
                   - !Sub "${ClipBucket.Arn}/samples/*"
+                  - !Sub "${ClipBucket.Arn}/traces/*"
               - Effect: Allow
                 Action: [s3:PutObject]
-                Resource: !Sub "${ClipBucket.Arn}/uploads/*"
+                Resource:
+                  - !Sub "${ClipBucket.Arn}/uploads/*"
+                  - !Sub "${ClipBucket.Arn}/traces/*"
+        - PolicyName: data
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: [dynamodb:GetItem, dynamodb:PutItem, dynamodb:UpdateItem, dynamodb:DeleteItem, dynamodb:Query]
+                Resource: !GetAtt DataTable.Arn
+              - Effect: Allow
+                Action: [secretsmanager:GetSecretValue]
+                Resource: !Ref SessionSecret
 
   FunctionLogs:
     Type: AWS::Logs::LogGroup
@@ -118,6 +157,8 @@ Resources:
       Environment:
         Variables:
           KAMPAN_BUCKET: !Ref ClipBucket
+          KAMPAN_TABLE: !Ref DataTable
+          KAMPAN_SECRET_ARN: !Ref SessionSecret
 
   FunctionUrl:
     Type: AWS::Lambda::Url
@@ -185,5 +226,7 @@ Outputs:
     Value: !GetAtt FunctionUrl.FunctionUrl
   Bucket:
     Value: !Ref ClipBucket
+  Table:
+    Value: !Ref DataTable
   Dashboard:
     Value: !Sub "https://${AWS::Region}.console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#dashboards:name=${AWS::StackName}-agent"

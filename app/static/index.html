@@ -3,69 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kampan - vibration from a phone video</title>
-  <meta name="description" content="An agent that turns a phone slow-motion clip into a vibration measurement it can defend, and tells you what to film next when it cannot.">
+  <meta name="color-scheme" content="light dark">
+  <title>Kampan - machine vibration from a phone video</title>
+  <meta name="description" content="Register machines, film them with a phone, and let an OpenCV agent decide when the clip can support a vibration reading. History, trends and tickets for small sites.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231b1d1f'/%3E%3Cpath d='M3 2v12M6 2v12M9 2v12M12 2v12' stroke='%230f6b62' stroke-width='1.6'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
   <header class="top">
-    <div class="brand">
+    <a class="brand" href="#/">
       <span class="logo" aria-hidden="true"></span>
-      <div>
-        <h1>Kampan</h1>
-        <p class="tagline">Vibration from a phone video, with an agent that checks the clip before it trusts the number.</p>
-      </div>
-    </div>
-    <ul class="chips" aria-label="Built with">
-      <li>OpenCV 5</li><li>AWS Lambda + S3</li><li>No LLM, no paid API</li>
-    </ul>
+      <span><span class="name">Kampan</span><span class="tagline">Machine vibration from a phone video</span></span>
+    </a>
+    <div id="account" class="account-bar"></div>
   </header>
-
-  <main class="layout">
-    <section class="panel" aria-labelledby="clip-h">
-      <h2 id="clip-h"><span class="step">1</span> Clip</h2>
-      <label class="drop" id="drop" data-testid="upload">
-        <input type="file" id="file" accept="video/*">
-        <strong>Choose a slow-motion clip</strong>
-        <span>10 s of a running machine, phone resting on something still, ArUco marker id 0 on the machine and id 1 behind it.</span>
-      </label>
-      <div class="settings">
-        <label>Marker size (mm)
-          <input type="number" id="marker" value="40" min="5" max="500" step="0.5" data-testid="marker-mm"></label>
-        <label>Machine class (ISO 10816-1)
-          <select id="mclass" data-testid="machine-class">
-            <option value="I">I: small, up to 15 kW</option>
-            <option value="II">II: medium, 15 to 75 kW</option>
-            <option value="III">III: large, rigid base</option>
-            <option value="IV">IV: large, soft base</option>
-          </select></label>
-      </div>
-      <h3>Or try a sample</h3>
-      <p class="muted small">Samples are simulated clips with known vibration, labelled as such. The agent sees exactly what it would see from a phone.</p>
-      <div id="samples" class="samples" data-testid="samples"></div>
-      <h3>Clips in this session</h3>
-      <ol id="clips" class="clips"><li class="muted">None yet.</li></ol>
-      <button class="ghost" id="reset" type="button">Start over</button>
-    </section>
-
-    <section class="panel" aria-labelledby="agent-h">
-      <h2 id="agent-h"><span class="step">2</span> Agent</h2>
-      <div id="status" class="status idle" role="status" aria-live="polite" data-testid="status">
-        Waiting for a clip.
-      </div>
-      <ol id="timeline" class="timeline" data-testid="timeline"></ol>
-    </section>
-
-    <section class="panel wide" aria-labelledby="result-h">
-      <h2 id="result-h"><span class="step">3</span> Result</h2>
-      <div id="result" data-testid="result"><p class="muted">The result appears when the agent has a measurement it can defend.</p></div>
-    </section>
-  </main>
-
+  <nav id="tabs" class="tabs" aria-label="Sections"></nav>
+  <main id="view"><p class="muted loading">Loading...</p></main>
   <footer class="foot">
-    <p>Kampan gives a camera screening estimate of vibration in the image plane. It is not a certified ISO 10816 measurement and does not replace a contact sensor. Do not film people; keep hands and the phone away from moving parts. Uploaded clips are deleted after one day.</p>
-    <p><a href="https://github.com/let-the-dreamers-rise/kampan">Source code</a> - OpenCV AI Competition 2026 entry.</p>
+    <p>Kampan gives a camera screening estimate of vibration in the image plane. It is not a certified ISO 10816 measurement and does not replace a contact sensor. Keep hands and the phone away from moving parts. Uploaded clips are deleted after one day.</p>
+    <p><a href="#/impact">Live activity</a> | <a href="https://github.com/let-the-dreamers-rise/kampan">Source code</a> | Planned: ticket email and CMMS export, live capture coach, accelerometer validation.</p>
   </footer>
-  <script src="/static/app.js"></script>
+  <script type="module" src="/static/js/app.js"></script>
 </body>
 </html>

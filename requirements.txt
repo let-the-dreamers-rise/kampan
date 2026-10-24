@@ -2,6 +2,14 @@
 opencv-python-headless==5.0.0.93
 numpy==2.5.4
 boto3==1.43.118
+webauthn==3.0.1
+cbor2==6.1.5
+cryptography==50.0.2
+pyOpenSSL==26.4.0
+pyasn1==0.6.4
+pyasn1-modules==0.4.2
+cffi==2.1.1
+typing-extensions==4.16.0
 # Development
 pytest==9.1.1
 pytest-cov==7.1.0

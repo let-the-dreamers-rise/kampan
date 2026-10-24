@@ -21,17 +21,21 @@ frequency. I wanted a tool that knows when it is being lied to.
 
 ### What it does
 
-You upload a slow-motion clip of a running machine with a printed ArUco marker taped to it. Kampan's agent checks the
-time base, camera shake, metric scale, noise floor and aliasing with OpenCV 5. If a check fails, it asks for a recapture
-with a specific instruction or asks one question. When the clip passes, it reports the vibration spectrum, velocity in
-mm/s, the ISO 10816-1 zone and an order-based diagnosis. In zone C or D it drafts a maintenance ticket and waits for a
-human to approve it. Every step is recorded in a trace you can download.
+A maintenance lead signs up with a passkey, registers the site's machines and sends a technician a one-time invite
+link. The technician films a machine in slow motion with two printed ArUco markers and uploads the clip. Kampan's
+agent checks the time base, camera shake, metric scale, noise floor and aliasing with OpenCV 5. If a check fails, it
+asks for a recapture with a specific instruction or asks one question. When the clip passes, it reports velocity in
+mm/s, the ISO 10816-1 zone and an order-based diagnosis, saves the reading to the machine's history, and compares it
+with the previous one. In zone C or D it drafts a maintenance ticket; the technician decides whether to send it, and
+the lead approves or declines it. The lead can share a read-only report of a machine. Every reading keeps its full
+agent trace.
 
 ### How I built it
 
 - **OpenCV 5:** ArUco detection with sub-pixel corners for scale, `findTransformECC` for sub-pixel tracking and camera-motion removal, DIS optical flow to find vibrating regions, and a Laplacian pyramid for the magnified view.
 - **Agent:** a deterministic policy in Python with ordered checks, bounded recaptures and questions, and a JSON trace. No LLM and no paid API.
-- **AWS:** one CloudFormation stack with a Lambda container image behind a function URL, presigned uploads to a private S3 bucket, and CloudWatch logs, metrics, dashboard, alarm and X-Ray.
+- **AWS:** one CloudFormation stack with a Lambda container image behind a function URL, DynamoDB for accounts and records, a Secrets Manager key for session cookies, presigned uploads to a private S3 bucket, and CloudWatch logs, metrics, dashboard, alarm and X-Ray.
+- **Accounts:** passkeys (WebAuthn) with signed HttpOnly session cookies; the server enforces the lead and technician roles on every call, and rate-limits every endpoint.
 - **Evaluation:** a closed-loop simulator that renders the recapture the agent asks for, so the agent can be scored against the same pipeline without checks.
 
 ### Challenges I ran into
@@ -59,7 +63,7 @@ rising trend triggers an inspection before a zone change does.
 
 ## Built with
 
-opencv, python, numpy, aws-lambda, amazon-s3, amazon-cloudwatch, aws-x-ray, aws-cloudformation, docker, javascript
+opencv, python, numpy, aws-lambda, amazon-dynamodb, amazon-s3, aws-secrets-manager, amazon-cloudwatch, aws-x-ray, aws-cloudformation, webauthn, docker, javascript
 
 ## Links
 

@@ -7,7 +7,8 @@ import shutil
 from pathlib import Path
 from typing import Protocol
 
-KEY_PATTERN = re.compile(r"^(uploads|samples)/[A-Za-z0-9][A-Za-z0-9._-]{0,120}(/[A-Za-z0-9._-]{1,120})?$")
+KEY_PATTERN = re.compile(r"^(uploads|samples|traces)/[A-Za-z0-9][A-Za-z0-9._-]{0,120}(/[A-Za-z0-9._-]{1,120})?$")
+CLIP_PREFIXES = ("uploads/", "samples/")
 MAX_UPLOAD_BYTES = 300 * 1024 * 1024
 
 
@@ -23,6 +24,18 @@ class Storage(Protocol):
     def download(self, key: str, path: Path) -> Path: ...
 
     def put_file(self, key: str, path: Path, content_type: str) -> None: ...
+
+    def put_bytes(self, key: str, data: bytes, content_type: str) -> None: ...
+
+    def get_bytes(self, key: str) -> bytes: ...
+
+
+def check_clip_key(key: str) -> str:
+    """Clips may only come from uploads or the built-in samples, never from traces."""
+    check_key(key)
+    if not key.startswith(CLIP_PREFIXES):
+        raise ValueError(f"invalid clip key: {key!r}")
+    return key
 
 
 class S3Storage:
@@ -45,6 +58,15 @@ class S3Storage:
 
     def put_file(self, key: str, path: Path, content_type: str) -> None:
         self.client.upload_file(str(path), self.bucket, check_key(key), ExtraArgs={"ContentType": content_type})
+
+    def put_bytes(self, key: str, data: bytes, content_type: str) -> None:
+        self.client.put_object(Bucket=self.bucket, Key=check_key(key), Body=data, ContentType=content_type)
+
+    def get_bytes(self, key: str) -> bytes:
+        try:
+            return self.client.get_object(Bucket=self.bucket, Key=check_key(key))["Body"].read()
+        except self.client.exceptions.NoSuchKey as exc:
+            raise FileNotFoundError(key) from exc
 
 
 class LocalStorage:
@@ -69,6 +91,15 @@ class LocalStorage:
         dst = self.path_of(key)
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, dst)
+
+    def put_bytes(self, key: str, data: bytes, content_type: str) -> None:
+        self.write_bytes(key, data)
+
+    def get_bytes(self, key: str) -> bytes:
+        src = self.path_of(key)
+        if not src.exists():
+            raise FileNotFoundError(key)
+        return src.read_bytes()
 
     def write_bytes(self, key: str, data: bytes) -> None:
         if len(data) > MAX_UPLOAD_BYTES:
