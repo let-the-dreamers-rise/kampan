@@ -2,23 +2,47 @@
 import { api } from "../api.js";
 import { el, problem } from "../dom.js";
 import { measurePanel } from "../measure.js";
-import { signIn, signUp, supported } from "../passkey.js";
+import { finishSignIn, finishSignUp, isFresh, prepareSignIn, prepareSignUp, supported } from "../passkey.js";
 
 function accountForm({ invite = null, onDone }) {
   const out = el("div", { class: "msg", role: "status", "aria-live": "polite" });
   const name = el("input", { id: "your-name", autocomplete: "name", maxlength: "40", required: true, placeholder: "Your name" });
+  let signUpPrep = null;
+  let signInPrep = null;
+  let timer = null;
+  const readyIn = () => { if (!invite) prepareSignIn().then((p) => { signInPrep = p; }).catch(() => { signInPrep = null; }); };
+  const readyUp = () => {
+    const value = name.value.trim();
+    if (!value) return;
+    prepareSignUp(value, invite || undefined).then((p) => { signUpPrep = p; }).catch((err) => { signUpPrep = null; out.replaceChildren(problem(err)); });
+  };
+  name.addEventListener("input", () => { clearTimeout(timer); signUpPrep = null; timer = setTimeout(readyUp, 400); });
   const busy = (b) => form.querySelectorAll("button").forEach((x) => { x.disabled = b; });
-  const attempt = async (fn) => {
+  // `start` must open the passkey prompt before its first await, so the prompt comes straight from the tap.
+  const attempt = async (start) => {
     busy(true); out.replaceChildren("Waiting for your passkey...");
-    try { onDone(await fn()); } catch (err) { out.replaceChildren(problem(err)); } finally { busy(false); }
+    try { onDone(await start()); } catch (err) { out.replaceChildren(problem(err)); readyIn(); readyUp(); } finally { busy(false); }
+  };
+  const doSignUp = () => {
+    clearTimeout(timer);
+    const value = name.value.trim();
+    const prep = signUpPrep && signUpPrep.name === value && isFresh(signUpPrep) ? signUpPrep : null;
+    signUpPrep = null;
+    return prep ? finishSignUp(prep) : prepareSignUp(value, invite || undefined).then(finishSignUp);
+  };
+  const doSignIn = () => {
+    const prep = isFresh(signInPrep) ? signInPrep : null;
+    signInPrep = null;
+    return prep ? finishSignIn(prep) : prepareSignIn().then(finishSignIn);
   };
   const form = el("form", { class: "account" },
     el("label", { for: "your-name" }, invite ? "Your name, as your lead will see it" : "Your name"), name,
     el("div", { class: "row" }, el("button", { type: "submit" }, invite ? "Join with a passkey" : "Create account with a passkey"),
-      invite ? "" : el("button", { type: "button", class: "ghost", onclick: () => attempt(signIn) }, "I have an account: sign in")),
-    el("p", { class: "small muted" }, "A passkey uses your phone's fingerprint, face or screen lock. No password, nothing to remember."), out);
-  form.addEventListener("submit", (ev) => { ev.preventDefault(); if (name.value.trim()) attempt(() => signUp(name.value.trim(), invite || undefined)); });
+      invite ? "" : el("button", { type: "button", class: "ghost", onclick: () => attempt(doSignIn) }, "I have an account: sign in")),
+    el("p", { class: "small muted" }, "A passkey uses your phone's fingerprint, face or screen lock. No password. It syncs through your Google or Apple account, and on a laptop you can sign in by scanning a QR code with your phone."), out);
+  form.addEventListener("submit", (ev) => { ev.preventDefault(); if (name.value.trim()) attempt(doSignUp); });
   if (!supported()) form.replaceChildren(el("p", {}, "This browser does not support passkeys. Use a recent Chrome, Safari, Edge or Firefox."));
+  else readyIn();
   return form;
 }
 

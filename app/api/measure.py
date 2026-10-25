@@ -8,7 +8,10 @@ from app.api.context import caller, storage, table
 from app.domain import machines, measurements, stats, tickets
 from app.domain.common import ident
 from app.samples import list_samples
-from app.web import BadRequest, Request, ok
+from app.repo.table import now
+from app.web import BadRequest, Forbidden, Request, ok
+
+UPLOAD_TTL = 86400  # matches the bucket's one-day expiry for uploads/
 
 
 def samples(req: Request) -> dict:
@@ -16,9 +19,20 @@ def samples(req: Request) -> dict:
 
 
 def new_upload(req: Request) -> dict:
-    caller(req, "technician")
+    c = caller(req, "technician")
     body = req.json()
-    return ok(service.new_upload(storage(), body.get("filename", "clip.mp4"), body.get("content_type", "video/mp4")))
+    target = service.new_upload(storage(), body.get("filename", "clip.mp4"), body.get("content_type", "video/mp4"))
+    table().put({"pk": f"UPLOAD#{target['key']}", "sk": "UPLOAD", "site_id": c.site_id, "ttl": now() + UPLOAD_TTL})
+    return ok(target)
+
+
+def _check_uploads(clips: object, site_id: str) -> None:
+    """An uploaded clip may only be measured at the site that asked to upload it."""
+    for key in clips if isinstance(clips, list) else []:
+        if isinstance(key, str) and key.startswith("uploads/"):
+            owner = table().get(f"UPLOAD#{key}", "UPLOAD")
+            if owner is None or owner.get("site_id") != site_id:
+                raise Forbidden("refused: that clip was not uploaded at this site")
 
 
 def _sample_for(clips: list) -> dict | None:
@@ -58,6 +72,7 @@ def measure(req: Request) -> dict:
     answers = body.get("answers") or {}
     if not isinstance(answers, dict):
         raise BadRequest("answers must be an object")
+    _check_uploads(body.get("clips"), c.site_id)
     sample = _sample_for(body.get("clips"))
     config = {"machine_class": machine["machine_class"],
               "marker_mm": sample["config"]["marker_mm"] if sample else machine["marker_mm"]}

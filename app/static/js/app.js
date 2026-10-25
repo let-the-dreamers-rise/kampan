@@ -20,8 +20,8 @@ const ctx = {
   go(hash) { if (location.hash === hash) render(); else location.hash = hash; },
   async refresh() { ctx.me = await api("/api/me"); header(); },
   signedIn(me) { ctx.me = me; ctx.go(location.hash.startsWith("#/join/") ? HOME[me.role] : HOME[me.role]); header(); },
-  async switchRole(role, hash) {
-    try { ctx.me = await api("/api/session/switch", { role }); header(); ctx.go(hash || HOME[role]); } catch (err) { $("#view").prepend(problem(err)); }
+  async switchRole(role, hash, siteId) {
+    try { ctx.me = await api("/api/session/switch", { role, site_id: siteId }); header(); ctx.go(hash || HOME[ctx.me.role]); } catch (err) { $("#view").prepend(problem(err)); }
   },
 };
 
@@ -36,7 +36,11 @@ function header() {
   }
   const other = me.role === "lead" ? "technician" : "lead";
   const canSwitch = me.roles_here.includes(other) || other === "lead";
-  box.replaceChildren(el("div", { class: "who" }, el("b", {}, me.user.name), el("span", { class: "small muted" }, ` ${me.site.name}`)),
+  const sites = me.memberships.length > 1 ? el("select", { class: "small", "aria-label": "Site", onchange: (ev) => {
+    const target = me.memberships.find((m) => m.site_id === ev.target.value);
+    ctx.switchRole(target.roles.includes(me.role) ? me.role : target.roles[0], null, target.site_id);
+  } }, me.memberships.map((m) => el("option", { value: m.site_id, selected: m.site_id === me.site.site_id }, m.site_name))) : el("span", { class: "small muted" }, ` ${me.site.name}`);
+  box.replaceChildren(el("div", { class: "who" }, el("b", {}, me.user.name), sites),
     el("span", { class: `tag role ${me.role}` }, me.role),
     canSwitch ? el("button", { type: "button", class: "ghost small", onclick: () => ctx.switchRole(other) }, `Switch to ${other}`) : "",
     el("button", { type: "button", class: "ghost small", onclick: async () => { await api("/api/auth/logout", {}); ctx.me = { signed_in: false }; header(); ctx.go("#/"); } }, "Sign out"));

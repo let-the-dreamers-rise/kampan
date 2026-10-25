@@ -12,8 +12,21 @@ function friendly(err) {
   return err;
 }
 
-export async function signUp(name, invite) {
-  const { challenge_id: challengeId, options } = await api("/api/auth/register/options", { name, invite });
+// Challenges are fetched before the tap (prepare*), so the passkey prompt opens directly from the tap.
+// Safari refuses a prompt that is not started by a user gesture, and an awaited fetch can use the gesture up.
+const FRESH_MS = 240000; // the server keeps a challenge for 300 s
+export const isFresh = (prep) => Boolean(prep) && Date.now() - prep.at < FRESH_MS;
+
+export async function prepareSignUp(name, invite) {
+  return { ...(await api("/api/auth/register/options", { name, invite })), name, invite, at: Date.now() };
+}
+
+export async function prepareSignIn() {
+  return { ...(await api("/api/auth/login/options", {})), at: Date.now() };
+}
+
+export async function finishSignUp(prep) {
+  const { challenge_id: challengeId, options, invite } = prep;
   const publicKey = { ...options, challenge: toBytes(options.challenge), user: { ...options.user, id: toBytes(options.user.id) },
     excludeCredentials: (options.excludeCredentials || []).map((c) => ({ ...c, id: toBytes(c.id) })) };
   let cred;
@@ -25,8 +38,8 @@ export async function signUp(name, invite) {
   return api("/api/auth/register/verify", { challenge_id: challengeId, credential, invite });
 }
 
-export async function signIn() {
-  const { challenge_id: challengeId, options } = await api("/api/auth/login/options", {});
+export async function finishSignIn(prep) {
+  const { challenge_id: challengeId, options } = prep;
   const publicKey = { ...options, challenge: toBytes(options.challenge),
     allowCredentials: (options.allowCredentials || []).map((c) => ({ ...c, id: toBytes(c.id) })) };
   let cred;

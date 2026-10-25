@@ -36,6 +36,10 @@ def team(api):
     return lead, tech, m["data"]["machine_id"], inv["data"]["token"]
 
 
+def clip(tech):
+    return tech.post("/api/uploads", {"filename": "a.mp4", "content_type": "video/mp4"})[1]["data"]["key"]
+
+
 def test_sign_up_then_sign_in_with_the_same_passkey(api):
     c = Client()
     me = c.sign_up("Asha")
@@ -99,6 +103,22 @@ def test_other_sites_records_are_invisible(api, agent):
                                          "clips": ["uploads/a.mp4"]})[0] == 404
 
 
+def test_uploads_belong_to_the_site_that_asked(api, agent):
+    _, tech, machine_id, _ = team(api)
+    key = tech.post("/api/uploads", {"filename": "a.mp4", "content_type": "video/mp4"})[1]["data"]["key"]
+    status, body = tech.post("/api/measure", {"machine_id": machine_id, "session_id": "run000009", "clips": [key]})
+    assert status == 200, body
+    outsider = Client("10.0.0.5")
+    outsider.sign_up("Mallory")
+    _, m = outsider.post("/api/machines", {"name": "Mine"})
+    outsider.post("/api/session/switch", {"role": "technician"})
+    status, body = outsider.post("/api/measure", {"machine_id": m["data"]["machine_id"], "session_id": "run000010",
+                                                 "clips": [key]})
+    assert status == 403 and "not uploaded at this site" in body["error"]
+    assert outsider.post("/api/measure", {"machine_id": m["data"]["machine_id"], "session_id": "run000011",
+                                          "clips": ["uploads/never-requested.mp4"]})[0] == 403
+
+
 def test_switching_to_a_role_you_do_not_hold_is_refused(api):
     _, tech, _, _ = team(api)
     me = tech.get("/api/me")[1]["data"]
@@ -110,7 +130,7 @@ def test_switching_to_a_role_you_do_not_hold_is_refused(api):
 
 def test_measurement_ticket_loop_and_trend(api, agent):
     lead, tech, machine_id, _ = team(api)
-    body = {"machine_id": machine_id, "session_id": "run000001", "clips": ["uploads/a.mp4"]}
+    body = {"machine_id": machine_id, "session_id": "run000001", "clips": [clip(tech)]}
     status, first = tech.post("/api/measure", body)
     assert status == 200 and first["data"]["saved"]["ticket_id"]
     assert agent[0]["answers"]["running_hz"] == pytest.approx(21.0)  # rpm from the machine record
@@ -132,7 +152,7 @@ def test_measurement_ticket_loop_and_trend(api, agent):
 
 def test_share_link_is_read_only_and_revocable(api, agent):
     lead, tech, machine_id, _ = team(api)
-    tech.post("/api/measure", {"machine_id": machine_id, "session_id": "run000001", "clips": ["uploads/a.mp4"]})
+    tech.post("/api/measure", {"machine_id": machine_id, "session_id": "run000001", "clips": [clip(tech)]})
     token = lead.post(f"/api/machines/{machine_id}/share")[1]["data"]["share_token"]
     status, page = Client("10.0.0.9").get(f"/api/share/{token}")
     assert status == 200 and page["data"]["machine"]["name"] == "Cooling fan"
@@ -155,6 +175,6 @@ def test_rate_limit(api):
 
 def test_impact_counts_come_from_records(api, agent):
     _, tech, machine_id, _ = team(api)
-    tech.post("/api/measure", {"machine_id": machine_id, "session_id": "run000001", "clips": ["uploads/a.mp4"]})
+    tech.post("/api/measure", {"machine_id": machine_id, "session_id": "run000001", "clips": [clip(tech)]})
     stats = Client("10.0.0.8").get("/api/impact")[1]["data"]["stats"]
     assert stats["sites"] == 1 and stats["machines"] == 1 and stats["measurements"] == 1 and stats["tickets"] == 1

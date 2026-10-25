@@ -26,6 +26,7 @@ try {
   let p = lead.page;
   await p.goto(`${BASE}/`);
   await p.fill("#your-name", "Asha (test)");
+  await p.waitForTimeout(1200); // lets the page fetch the challenge before the tap, as on a real phone
   await p.click("text=Create account with a passkey");
   await p.locator(".tabs a", { hasText: "Machines" }).waitFor();
   step("lead signed up with a passkey and landed on Machines");
