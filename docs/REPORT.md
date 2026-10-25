@@ -65,6 +65,21 @@ One CloudFormation stack deploys the system.
 - **Storage:** clips go straight from the browser to a private S3 bucket through a presigned POST capped at 300 MB. Uploads expire after one day and the bucket refuses non-TLS access.
 - **Operations:** structured JSON logs, embedded metrics, a CloudWatch dashboard, an error alarm and X-Ray tracing.
 - **Cost guard:** reserved concurrency of 4.
+- **Data:** DynamoDB holds sites, people, machines, readings, tickets and invites. A Secrets Manager key signs the session cookies, and agent traces are stored in S3.
+
+### 2.4 Product
+
+Kampan is used by two roles at a site. A lead signs up with a passkey, registers machines with their ISO class,
+running speed and marker size, and invites technicians with one-time links. A technician measures a machine; the
+running speed the lead entered is passed to the agent, so it does not ask. Each finished session is saved to the
+machine's history with its trace and compared with the previous reading, and a rise of 25% or more is flagged.
+In zone C or D the agent drafts a ticket, the technician decides whether to send it, and the lead approves or
+declines it. A lead can share a read-only report of a machine without anyone's name.
+
+The server enforces every role and site boundary. The API tests sign up with a software passkey and try the
+obvious attacks: the wrong role, another site's machine or upload, a reused invite, an edited cookie, a cross-site
+request and a request flood. An end-to-end test drives Chrome with virtual passkeys through the whole loop, and it
+passes against the deployed app.
 
 ## 3. Evaluation
 

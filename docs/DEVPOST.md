@@ -73,9 +73,10 @@ opencv, python, numpy, aws-lambda, amazon-dynamodb, amazon-s3, aws-secrets-manag
 
 ## Agentic Vision Award
 
-Opt in. Point judges to `docs/agent-workflow.png` for the workflow diagram, and to a sample trace downloaded from the
-app for the trace in which an OpenCV result changes a later decision. The hand-held sample shows this: the camera-shake
-measurement triggers the recapture.
+Opt in. Point judges to `docs/agent-workflow.png` for the workflow diagram. For a trace in which an OpenCV result
+changes a later decision, any saved reading has a Trace button on its machine page. The hand-held sample shows it:
+the camera-shake measurement triggers the recapture, and the second clip is graded. The no-account demo on the home
+page shows the same agent timeline without signing in.
 
 ## AI tools disclosure
 
